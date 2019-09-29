@@ -1,10 +1,13 @@
 <template>
-	<div>测试路由</div>
+	<div class="box">
+		<div v-for="doc in docList" class="doc-single">
+		
+		</div>
+	</div>
 </template>
 
 <script>
     export default {
-        name: "index"
     }
 </script>
 

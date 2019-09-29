@@ -1,68 +1,46 @@
 <template>
-    <div class="nav-line">
-        <div class="fl">
-            <nuxt-link to="/">首页</nuxt-link>
-        </div>
-        <div class="login-box fr">
-            <!--<ul v-if="$store.getters.getT!==null">
-                <li style="width:100px;">
-                    &lt;!&ndash;<nuxt-link :to="'/personal/'+$store.getters.getToken.userId">{{username}}</nuxt-link>&ndash;&gt;
-                </li>
-                <li>注销</li>
-            </ul>
-            <ul v-else>
-                <li>开始</li>
-                <li><nuxt-link to="/Login">登录</nuxt-link></li>
-                <li>注册</li>
-            </ul>-->
-        </div>
-    </div>
+	<div class="bg">
+		<div class="nav">
+			<div>tryna</div>
+			<ul>
+				<li>文章列表</li>
+				<li>更新日志</li>
+				<li><nuxt-link to="/document">文档中心</nuxt-link></li>
+				<li>关于我</li>
+			</ul>
+		</div>
+	</div>
 </template>
 
 <script>
     export default {
-        name: "navHeader",
-        data(){
-            return{
-
-            }
-        },
-        created() {
-
-        },
-        methods:{
-        },
-        computed:{
-            /*username(){
-                return this.$store.getters.getToken.username;
-            }*/
-        }
     }
 </script>
 
 <style scoped lang="less">
-    a{
-        height: inherit;
-        display: inherit;
-    }
-    .nav-line{
-        height:60px;
-        line-height:60px;
-        background-color: #fff0cd;
-        color:#591804;
-        padding:0 20px;
-        .login-box{
-            ul{
-                height:100%;
-                li{
-                    float: left;
-                    display: inline-block;
-                    width:60px;
-                    height:100%;
-                    cursor:pointer;
-
-                }
-            }
-        }
-    }
+	.bg{
+		width:100%;
+		height:200px;
+		background: url("../static/img/bg.jpg");
+		.nav{
+			height:80px;
+			line-height: 80px;
+			display: flex;
+			width:1200px;
+			margin:0 auto;
+			color:#666666;
+			font-weight: bold;
+			div{
+				flex:2
+			}
+			ul{
+				flex:1;
+				display: flex;
+				li{
+					flex:1;
+					text-align: center;
+				}
+			}
+		}
+	}
 </style>

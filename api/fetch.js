@@ -95,41 +95,6 @@ axios.interceptors.response.use(response => {
 });
 
 export default {
-  post(url, params = {}) {
-    return new Promise((resolve,reject) => {
-      axios.post(url,qs.stringify(params),{
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-        },
-      })
-        .then(response => {
-          resolve(response.data);
-        },err => {
-          reject(err)
-        })
-    })
-  },
-  /**
-   * 封装get方法
-   * @param url
-   * @param params
-   * @returns {Promise}
-   */
-
-
-  get(url, params={}) {
-    return new Promise((resolve,reject) => {
-      axios.get(url,{
-        params:params
-      })
-          .then(response => {
-            resolve(response.data);
-          })
-          .catch(err => {
-            reject(err)
-          })
-    })
-  },
   /**
    * 处理application/json
    * @param url
