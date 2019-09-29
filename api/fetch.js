@@ -98,16 +98,19 @@ export default {
   /**
    * 处理application/json
    * @param url
+   * @param method
    * @param params
    * @returns {Promise<any>}
    */
-  json(url, params = {}) {
+  json(url,method, params = {}) {
     return new Promise((resolve,reject) => {
-      axios.post(url,params,{
+      axios({
+        url:url,
+        data:params,
+        method:method,
         headers: {
           'Content-Type': 'application/json;charset=UTF-8'
-        },
-      })
+      }})
           .then(response => {
             resolve(response.data);
           },err => {

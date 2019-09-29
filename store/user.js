@@ -1,4 +1,4 @@
-import userFunction from '~/api/user';
+//import userFunction from '~/api/user';
 export const state = () => ({
     token:"",
 });
@@ -20,9 +20,9 @@ export const mutations = {
 
 export const actions ={
     userLogin({commit},params){
-        userFunction.login(params).then(res=>{
+        /*userFunction.login(params).then(res=>{
             commit("user_login",res.data.token);
 
-        });
+        });*/
     }
 };

@@ -75,12 +75,12 @@
 </template>
 
 <script>
-    import articleFunction from '~/api/article';
+    /*import articleFunction from '~/api/article';
     import collectFunction from '~/api/collect';
     import uploadFunction from '~/api/upload';
     import moment from 'moment'
     import {mavonEditor} from 'mavon-editor'
-    import 'mavon-editor/dist/css/index.css'
+    import 'mavon-editor/dist/css/index.css'*/
     export default {
         data() {
             return {
