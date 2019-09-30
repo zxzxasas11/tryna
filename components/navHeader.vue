@@ -5,7 +5,7 @@
 			<ul>
 				<li>文章列表</li>
 				<li>更新日志</li>
-				<li><nuxt-link to="/document">文档中心</nuxt-link></li>
+				<li><nuxt-link to="/document/1">文档中心</nuxt-link></li>
 				<li>关于我</li>
 			</ul>
 		</div>
@@ -28,8 +28,8 @@
 			display: flex;
 			width:1200px;
 			margin:0 auto;
-			color:#666666;
 			font-weight: bold;
+			color:#666;
 			div{
 				flex:2
 			}
