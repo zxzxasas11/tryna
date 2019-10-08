@@ -28,14 +28,7 @@
             }
         },
         created(){
-            /*if(localStorage.getItem(`page${this.$route.params.currentPage}`)){
-                let dat = JSON.parse(localStorage.getItem(`page${this.$route.params.currentPage}`));
-                this.docList = dat.data;
-                this.total = dat.count;
-            }
-            else{*/
-                this.getDoc(this.currentPage);
-            //}
+            this.getDoc(this.currentPage);
         },
         /*async asyncData ({ params }) {
              await document.getList(this.currentPage).then((res) => {

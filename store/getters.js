@@ -12,5 +12,6 @@ export default {
     visitedViews: state => state.tags.visitedViews,
     activeIndex: state => state.tags.activeIndex,
     getKeepAlive: state => state.tags.keepAlive,
-    getTestIp: state => state.user.testIp
+    getTestIp: state => state.user.testIp,
+    getIfMobile:state=>state.user.user.ifM
 };
