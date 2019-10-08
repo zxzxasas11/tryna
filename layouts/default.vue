@@ -1,7 +1,7 @@
 <template>
     <div>
         <navHeader></navHeader>
-        <nuxt />
+        <nuxt keep-alive />
     </div>
 </template>
 <script>

@@ -1,13 +1,11 @@
 <template>
 	<div class="box">
 		<div class="main">
-			123
 			<!--<div class="article-single">
 			
 			</div>-->
 		</div>
 		<div class="introduction">
-			456
 		</div>
 	</div>
 </template>
@@ -20,6 +18,7 @@
             }
         },
         created() {
+            console.log("---------------------");
         },
         methods: {
             /*async asyncData ({ params }) {
@@ -35,7 +34,7 @@
 
 <style scoped lang="less">
 	.box{
-		width:1200px;
+		width:100%;
 		margin: 0 auto;
 		display: flex;
 		flex-direction: row;

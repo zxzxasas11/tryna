@@ -4,9 +4,9 @@
 			<div>tryna</div>
 			<ul>
 				<li>文章列表</li>
-				<li>更新日志</li>
+				<li><nuxt-link to="/update">更新日志</nuxt-link></li>
 				<li><nuxt-link to="/document/1">文档中心</nuxt-link></li>
-				<li>关于我</li>
+				<li><nuxt-link to="/about">关于我</nuxt-link></li>
 			</ul>
 		</div>
 	</div>
@@ -26,12 +26,12 @@
 			height:80px;
 			line-height: 80px;
 			display: flex;
-			width:1200px;
+			width:100%;
 			margin:0 auto;
 			font-weight: bold;
 			color:#666;
 			div{
-				flex:2
+				flex:1;
 			}
 			ul{
 				flex:1;

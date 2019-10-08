@@ -9,7 +9,7 @@
 		<div>
 			<el-pagination
 					@current-change="handleCurrentChange"
-					:current-page="currentPage"
+					:current-page=currentPage
 					layout="total, prev, pager, next, jumper"
 					:total="total">
 			</el-pagination>
@@ -24,18 +24,18 @@
             return{
                 docList:[],
 	            total:0,
-	            currentPage:this.$route.params.currentPage
+	            currentPage:parseInt(this.$route.params.currentPage)
             }
         },
         created(){
-            if(localStorage.getItem(`page${this.$route.params.currentPage}`)){
+            /*if(localStorage.getItem(`page${this.$route.params.currentPage}`)){
                 let dat = JSON.parse(localStorage.getItem(`page${this.$route.params.currentPage}`));
                 this.docList = dat.data;
                 this.total = dat.count;
             }
-            else{
+            else{*/
                 this.getDoc(this.currentPage);
-            }
+            //}
         },
         /*async asyncData ({ params }) {
              await document.getList(this.currentPage).then((res) => {
@@ -62,7 +62,7 @@
             }
         },
 	    destroyed(){
-            localStorage.removeItem(`page${this.$route.params.currentPage}`);
+            //localStorage.removeItem(`page${this.$route.params.currentPage}`);
 	    },
 	    watch:{
             /*'$route.params.currentPage'(data){
