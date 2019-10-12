@@ -1,9 +1,6 @@
 <template>
 	<div class="box">
 		<div class="main">
-			<!--<div class="article-single">
-			
-			</div>-->
 		</div>
 		<div class="introduction">
 		</div>
@@ -18,8 +15,9 @@
             }
         },
         created() {
-            console.log("---------------------");
         },
+	    mounted(){
+	    },
         methods: {
             /*async asyncData ({ params }) {
                 return await categoryFunction.getAll()

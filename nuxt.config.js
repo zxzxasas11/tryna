@@ -37,6 +37,7 @@ module.exports = {
   */
   plugins: [
     '@/plugins/element-ui',
+    '~/plugins/router'
   ],
   /*
   ** Nuxt.js dev-modules

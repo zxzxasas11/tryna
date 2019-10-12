@@ -79,6 +79,7 @@
 			img{
 				width:100%;
 				height:80%;
+				object-fit: cover;
 			}
 			div{
 				height:20%;

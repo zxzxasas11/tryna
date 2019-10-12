@@ -2,14 +2,15 @@
 	<div>
 		<navHeader></navHeader>
 		<nuxt keep-alive/>
+		
 	</div>
 </template>
 <script>
     import navHeader from '~/components/navHeader.vue'
-
     export default {
         data() {
-            return {}
+            return {
+            }
         },
         components: {navHeader},
         mounted() {
