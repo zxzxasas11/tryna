@@ -11,5 +11,9 @@ export default {
     //查询项目详情
     getOne(id){
         return fetch.json(`/project/${id}`,"GET",{})
+    },
+    //查询api
+    getApiList(params){
+        return fetch.json("/api/getList","GET",params);
     }
 }

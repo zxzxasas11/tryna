@@ -21,6 +21,15 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="less">
+	.loading-page{
+		width:100%;
+		height:100%;
+		position: absolute;
+		left:0;
+		top:0;
+		background: rgba(0,0,0,.3);
+		text-align: center;
+	}
 
 </style>

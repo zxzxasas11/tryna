@@ -1,11 +1,13 @@
 @width:200px;
 .window{
     width:100%;
-    div{
+    height: 100%;
+    &>div{
         float:left;
     }
     .left{
         width:@width;
+        border-right:1px solid #efefef;
     }
     .right{}
 }

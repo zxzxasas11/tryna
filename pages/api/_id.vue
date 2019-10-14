@@ -1,10 +1,21 @@
 <template>
 	<div>
 		<div>{{projectInfo.name}}</div>
-		<div class="window">
-			<div class="left"></div>
-			<div class="right"></div>
+		<div class="btn-group">
+			<el-button size="small" type="primary">添加分组</el-button>
+			<el-button size="small" @click="addInterface">添加接口</el-button>
 		</div>
+		<div class="window">
+			<div class="left">
+				<div v-for="i in projectInfo.category" @click="getApi(i)">{{i.name}}
+				</div>
+			</div>
+			<div class="right">
+				<nuxt/>
+			</div>
+		</div>
+		
+		
 	</div>
 </template>
 
@@ -24,12 +35,6 @@
             }
         },
         middleware:"auth",
-        /*async asyncData ({params}) {
-            await project.getOne(params.id).then(res=>{
-                console.log(res.data);
-                return{ projectInfo : res.data }
-            })
-        },*/
         created(){
             this.getInfo();
         },
@@ -38,7 +43,13 @@
                 project.getOne(this.$route.params.id).then(res=>{
                     this.projectInfo = res.data;
                 })
-            }
+            },
+	        async getApi(i){
+                this.$router.push("/api/"+this.$route.params.id+"/"+i._id);
+	        },
+	        async addInterface(){
+         
+	        }
         },
         computed:{
         },
@@ -49,5 +60,5 @@
 </script>
 
 <style scoped lang="less">
-
+	@import "../../assets/css/api.less";
 </style>

@@ -30,11 +30,11 @@ axios.interceptors.response.use(response => {
      * 在这里做loading 关闭
      */
         // 如果后端有新的token则重新缓存
-    let newToken = response.headers['newToken'];
+    //let newToken = response.headers['newToken'];
 
-    if (newToken) {
+    /*if (newToken) {
         localStorage.setItem("token", newToken);
-    }
+    }*/
 
     return response;
 
@@ -106,6 +106,7 @@ export default {
             axios({
                 url: url,
                 data: params,
+                params:method==='GET'?params:null,
                 method: method,
                 headers: {
                     'Content-Type': 'application/json;charset=UTF-8'
