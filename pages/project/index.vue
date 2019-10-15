@@ -13,7 +13,7 @@
 			</tr>
 			<tr v-for="(l,index) in list" :key="index">
 				<td>{{index+1}}</td>
-				<td><nuxt-link :to="'/api/'+l._id">{{l.name}}</nuxt-link></td>
+				<td><nuxt-link :to="'/project/'+l._id">{{l.name}}</nuxt-link></td>
 				<td>{{l.create_time}}</td>
 				<td>{{l.creator}}</td>
 				<td>

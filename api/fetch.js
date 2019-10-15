@@ -39,20 +39,14 @@ axios.interceptors.response.use(response => {
     return response;
 
 }, error => {
-    console.log(error);
-    return;
     let res = error.response;
     let {code} = res.data;
 
     switch (code) {
         case 401:
             // 处理401错误
-            //localStorage.removeItem("token");
             Message.error("登录过期，请重新登录,稍后跳转至登录页面");
             localStorage.removeItem("token");
-            setTimeout(function () {
-                router.replace("/login");
-            }, 3000);
             break;
 
         case 404:
@@ -99,7 +93,7 @@ export default {
      * @param url
      * @param method
      * @param params
-     * @returns {Promise<any>}
+     * @returns {Promise<*>}
      */
     json(url, method, params = {}) {
         return new Promise((resolve, reject) => {
@@ -123,7 +117,7 @@ export default {
      * 封装上传方法
      * @param url
      * @param data
-     * @returns {Promise<any>}
+     * @returns {Promise<*>}
      */
     upload(url, data) {
         return new Promise((resolve, reject) => {

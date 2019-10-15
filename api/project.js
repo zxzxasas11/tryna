@@ -15,5 +15,8 @@ export default {
     //查询api
     getApiList(params){
         return fetch.json("/api/getList","GET",params);
+    },
+    addCategory(params){
+        return fetch.json("/project/category/add","POST",params);
     }
 }

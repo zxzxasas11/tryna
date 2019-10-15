@@ -5,7 +5,7 @@
 			<ul>
 				<li>文章列表</li>
 				<li><nuxt-link to="/update">更新日志</nuxt-link></li>
-				<li><nuxt-link to="/api">api</nuxt-link></li>
+				<li><nuxt-link to="/project">api</nuxt-link></li>
 				<li><nuxt-link to="/document/1">文档中心</nuxt-link></li>
 				<li><nuxt-link to="/about">关于我</nuxt-link></li>
 			</ul>
