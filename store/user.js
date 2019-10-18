@@ -1,4 +1,5 @@
 //import userFunction from '~/api/user';
+import cookies from 'js-cookie'
 export const state = () => ({
     token:"",
     user:{
@@ -12,14 +13,9 @@ export const mutations = {
     set_loginVisible(state,value){
         state.loginVisible = value;
     },
-    set_ifMobile(state,value){
-        state.user.ifM = value;
-        localStorage.setItem("u",JSON.stringify(state.user));
-    },
     set_token(state,token){
         state.token = token;
-        console.log(token);
-        localStorage.setItem("token",token);
+        cookies.set('token',token);
     },
     del_token(state){
         state.token = '';
@@ -42,7 +38,6 @@ export const actions ={
         commit("set_ifMobile",params);
     },
     setToken({commit},value){
-        console.log(value);
         commit("set_token",value);
     },
     setLoginVisible({commit},value){

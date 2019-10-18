@@ -18,9 +18,9 @@
             })
         }*/
         created() {
-            document.getByName({title:localStorage.getItem("name")}).then((res) => {
+            /*document.getByName({title:localStorage.getItem("name")}).then((res) => {
                 this.imgList = res.data;
-            })
+            })*/
         }
     }
 </script>

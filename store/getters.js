@@ -13,5 +13,6 @@ export default {
     activeIndex: state => state.tags.activeIndex,
     getKeepAlive: state => state.tags.keepAlive,
     getTestIp: state => state.user.testIp,
-    getIfMobile:state=>state.user.user.ifM
+    getIfMobile:state=>state.user.user.ifM,
+    getProject:state=>state.project.project
 };

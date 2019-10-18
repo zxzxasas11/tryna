@@ -1,7 +1,8 @@
+import cookies from 'js-cookie'
 export default function ({ store, redirect }) {
-    //console.log(store.getters.getToken);
-    // If the user is not authenticated
-    /*if (!store.state.authenticated) {
-        return redirect('/login')
+    console.log(cookies.get("token"))
+    /*console.log(cookies.get("token"));
+    if(!cookies.get("token")){
+        redirect("/login");
     }*/
 }

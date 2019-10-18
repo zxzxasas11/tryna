@@ -18,14 +18,13 @@
 					<span @click="deleteApi(l)">删除</span>
 				</td>
 			</tr>
-			
 		</table>
 	</div>
 </template>
 
 <script>
-	import project from "../../../api/project";
-	import api from "../../../api/api"
+	import project from "~/api/project";
+	import api from "~/api/api"
     export default {
         data(){
             return{
@@ -42,11 +41,13 @@
         },
         //middleware:"auth",
         created(){
-            this.$message.success("删除成功");
         },
         async asyncData ({ params }) {
+            console.log(params.category);
             return await project.getApiList({category:params.category}).then(res=>{
                 return{list:res.data.data}
+            }).catch(err=>{
+                console.log(err);
             })
         },
         methods:{

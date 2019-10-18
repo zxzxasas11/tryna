@@ -18,5 +18,8 @@ export default {
     },
     addCategory(params){
         return fetch.json("/project/category/add","POST",params);
+    },
+    addApi(id,params){
+        return fetch.json("/project/api/"+id,"POST",params);
     }
 }

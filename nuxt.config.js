@@ -37,7 +37,8 @@ module.exports = {
   */
   plugins: [
     '@/plugins/element-ui',
-    '~/plugins/router'
+    '~/plugins/router',
+    '~/plugins/http'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -47,8 +48,7 @@ module.exports = {
   /*
   ** Nuxt.js modules
   */
-  modules: ['@nuxtjs/axios'
-  ],
+  modules: ['@nuxtjs/axios'],
   axios: {
     proxy: true,
     prefix: '/api/v1', // baseURL
@@ -56,7 +56,7 @@ module.exports = {
   },
   proxy: {
     '/api/v1': {
-      target: 'http://112.51.254.68:7777', // 代理地址
+      target: 'http://192.168.31.226:7777', // 代理地址
       changeOrigin: true,
       /*pathRewrite: {
         '^/api': ''
@@ -74,4 +74,4 @@ module.exports = {
     extend (config, ctx) {
     }
   }
-}
+};

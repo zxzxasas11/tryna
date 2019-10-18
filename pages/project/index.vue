@@ -28,7 +28,6 @@
 					<el-input v-model="project.name"></el-input>
 				</el-form-item>
 				
-				
 				<el-form-item label-width="0">
 					<el-button type="primary" @click="submitAdd">提交</el-button>
 					<el-button @click="dialogVisible = false">取消</el-button>
@@ -53,16 +52,10 @@
         created() {
             this.getProject();
         },
-        /*async asyncData ({ params }) {
-            return await project.getProjectById({})
-                .then((res) => {
-                    return{list:res.data}
-                })
-        },*/
+        middleware:"auth",
         methods: {
             async getProject(){
                 await project.getProjectById({}).then((res) => {
-                        //return{list:res.data}
 	                this.list = res.data;
                 })
             },

@@ -11,7 +11,6 @@
         layout:"blank",
         props: ['error'],
 	    created() {
-            //console.log(this.error);
         },
     }
 </script>
