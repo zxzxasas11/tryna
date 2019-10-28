@@ -1,67 +1,15 @@
 import axios from 'axios';
 import {Message} from "element-ui";
 import qs from 'qs'
-axios.defaults.timeout = 5000000000000;
+//axios.defaults.timeout = 5000000000000;
 const url = process.env.NODE_ENV === 'development'
     // 测试环境api接口
-    ? 'http://192.168.31.226:7777/api/v1'
+    ? 'http://192.168.31.226:9357'
     // 线上环境api接口
-    : 'http://112.51.254.68:7777/api/v1';
+    : 'http://112.51.254.68:7777';
 axios.defaults.baseURL = url;
 //axios.defaults.withCredentials=true;
 export default {
-     get(url,params={}){
-        return new Promise((resolve,reject) => {
-            axios.get(url,{
-                params:params
-            })
-                .then(response => {
-                    resolve(response.data);
-                })
-                .catch(err => {
-                    reject(err)
-                })
-        })
-    },
-
-
-
-    /**
-     * 封装post请求
-     * @param url
-     * @param data
-     * @returns {Promise}
-     */
-
-
-    post(url,data){
-        return new Promise((resolve,reject) => {
-            if(navigator.appName==='Microsoft Internet Explorer'){
-                let xhr = new XMLHttpRequest();
-                xhr.open("POST",axios.defaults.baseURL+url, true);
-                // 添加http头，发送信息至服务器时内容编码类型
-                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                xhr.send(qs.stringify(data));
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 304)) {
-                        resolve(JSON.parse(xhr.responseText))
-                    }
-                };
-            }
-            else{
-                axios.post(url,qs.stringify(data))
-                    .then(response => {
-                        resolve(response.data);
-                    })
-                    .catch(err => {
-                        reject(err)
-                    })
-            }
-        })
-    },
-
-
-
     json(url,method,data){
         return new Promise((resolve,reject) => {
             axios({

@@ -1,31 +1,36 @@
 <template>
 	<div class="box">
-		<div class="main">123
-		</div>
-		<div class="introduction">456
+		<div class="category-single" v-for="c in categoryList">
+			<span>{{c.name}}</span>
+			<div v-for="cc in c.children">
+				<span>{{cc.name}}</span>
+				<div v-for="ccc in cc.children">
+					<span><nuxt-link :to="'/plate/'+ccc._id">{{ccc.name}}</nuxt-link></span>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-
+	import category from "../api/category";
     export default {
         data() {
             return {
+                categoryList:[]
             }
         },
         created() {
+            this.getData();
         },
 	    mounted(){
 	    },
         methods: {
-            /*async asyncData ({ params }) {
-                return await categoryFunction.getAll()
-                    .then((res) => {
-                        console.log(res);
-                        return { title: res.data.data }
-                    })
-            },*/
+            getData(){
+                category.getCategory({}).then(res=>{
+                    this.categoryList = res.data;
+                })
+            }
         }
     }
 </script>
@@ -36,20 +41,7 @@
 		margin: 0 auto;
 		display: flex;
 		flex-direction: row;
-		/*column-count: 2;
-		column-gap: 10%;*/
-		.main{
-			//column-width: 400px;
-			border:1px solid #ddd;
-			box-sizing: border-box;
-			flex:1;
-		}
-		.introduction{
-			flex:1;
-			margin:0 40px;
-			border:1px solid #ddd;
-			box-sizing: border-box;
-			//column-width: 200px;
-		}
+		column-count: 2;
+		column-gap: 10%;
 	}
 </style>
