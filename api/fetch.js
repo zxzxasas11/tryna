@@ -24,7 +24,9 @@ export default {
                     }
                 },err => {
                     reject(err)
-                })
+                }).catch(err=>{
+                    console.log(err);
+            })
         })
     },
 

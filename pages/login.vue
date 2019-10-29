@@ -34,10 +34,6 @@
                     this.$store.dispatch("user/setToken",res.data.token);
                     this.$router.replace("/");
                 })
-                /*this.$json("/login","POST",this.user).then(res=>{
-                    this.$store.dispatch("setToken",res.data.token);
-                    this.$router.replace("/SysHome");
-                });*/
             }
         }
     }

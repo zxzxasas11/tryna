@@ -5,4 +5,10 @@ export default {
     getList(params) {
         return fetch.json('/post/getAll',"GET", params);
     },
+    getOne(id){
+        return fetch.json("/post/"+id,"GET",{});
+    },
+    addComment(params){
+        return fetch.json("/comment/add","POST",params);
+    }
 }

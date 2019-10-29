@@ -6,9 +6,7 @@ export default ({ app, $axios, store, route, redirect }) => {
     axios.defaults.timeout = 5000;
 
     axios.interceptors.request.use((config) => {
-
         let token =cookies.get("token");
-        console.log(token);
         if (token) {
             config.headers.common['Authorization'] = 'Bearer ' + token//localStorage.getItem("token");
         }

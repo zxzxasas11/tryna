@@ -1,6 +1,5 @@
 <template>
 	<div>
-		<div>这个是板块详情</div>
 		<table class="post-box">
 			<tr v-for="p in postList">
 				<td></td>
@@ -20,10 +19,10 @@
                 postList:[]
             }
         },
+        
 	    methods:{
             getDetail(id){
                 post.getList({categoryId:id}).then(res=>{
-                    console.log(res);
                     this.postList = res.data.data;
                 });
             }
@@ -34,6 +33,31 @@
     }
 </script>
 
-<style scoped>
-
+<style scoped lang="less">
+.post-box{
+	width: 100%;
+	//table-layout: fixed;
+	tr{
+		height:40px;
+		line-height: 40px;
+		&:nth-child(odd){
+			background-color: #ffe34a;
+		}
+		&:nth-child(even){
+			background-color: #7f828b;
+		}
+		&>td:first-child{
+			width:10%;
+		}
+		&>td:nth-child(2){
+			width:60%;
+		}
+		&>td:nth-child(3){
+			width:15%;
+		}
+		&>td:nth-child(4){
+			width:15%;
+		}
+	}
+}
 </style>

@@ -2,10 +2,12 @@
 	<div class="box">
 		<div class="category-single" v-for="c in categoryList">
 			<span>{{c.name}}</span>
-			<div v-for="cc in c.children">
+			<div class="category-second" v-for="cc in c.children">
 				<span>{{cc.name}}</span>
-				<div v-for="ccc in cc.children">
-					<span><nuxt-link :to="'/plate/'+ccc._id">{{ccc.name}}</nuxt-link></span>
+				<div class="category-third" v-for="ccc in cc.children">
+					<span>
+						<nuxt-link :to="'/plate/'+ccc._id">{{ccc.name}}</nuxt-link>
+					</span>
 				</div>
 			</div>
 		</div>
@@ -39,9 +41,17 @@
 	.box{
 		width:100%;
 		margin: 0 auto;
-		display: flex;
-		flex-direction: row;
 		column-count: 2;
 		column-gap: 10%;
+		.category-single{
+			break-inside: avoid;
+			width:100%;
+			.category-second{
+				padding:0 10px;
+				.category-third{
+					padding:0 10px;
+				}
+			}
+		}
 	}
 </style>
