@@ -1,6 +1,5 @@
 import axios from 'axios';
 import {Message} from "element-ui";
-import qs from 'qs'
 //axios.defaults.timeout = 5000000000000;
 const url = process.env.NODE_ENV === 'development'
     // 测试环境api接口

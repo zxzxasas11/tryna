@@ -1,5 +1,9 @@
 <template>
 	<div>
+		<div>
+			<h2 class="text-center">欢迎进入{{categoryInfo.name}}专区</h2>
+		</div>
+		<el-button class="btn text-right">发布新帖</el-button>
 		<table class="post-box">
 			<tr v-for="p in postList">
 				<td></td>
@@ -13,16 +17,20 @@
 
 <script>
 	import post from "../../api/post";
+	import category from "../../api/category";
     export default {
         data(){
             return{
-                postList:[]
+                postList:[],
+	            categoryInfo:{}
             }
         },
         async asyncData ({ params }) {
             let {data} = await post.getList({categoryId:params.id});
+            let c=await category.getOne({id:params.id});
             return{
-                postList:data.data
+                postList:data.data,
+	            categoryInfo:c.data
             }
         },
 	    methods:{

@@ -5,4 +5,8 @@ export default {
     getCategory(params) {
         return fetch.json('/category/getAll',"GET", params);
     },
+    //获取菜单详情 即进入板块显示
+    getOne(params){
+        return fetch.json(`/category/${params.id}`,"GET",{})
+    }
 }

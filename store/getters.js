@@ -1,10 +1,12 @@
 import jwt_decode from 'jwt-decode'
+import cookies from 'js-cookie'
 export default {
     getToken:state=> {
         if (state.user.token === "") {
-            state.user.token = localStorage.getItem("token");
+            console.log(cookies.get("token"));
+            state.user.token = cookies.get("token");
         }
-        return jwt_decode(state.user.token);
+        //return jwt_decode(state.user.token);
     },
     getT:state=> {
         return state.user.token;

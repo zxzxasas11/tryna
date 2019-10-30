@@ -1,12 +1,12 @@
 <template>
 	<div>
-		<div>这个是帖子的详情页</div>
 		<div class="line">
 			<div class="left-box">
 				<div>{{post.creator.username}}</div>
 			</div>
 			<div class="right-box">
 				<div>{{post.title}}</div>
+				<span class="time">{{post.create_time}}</span>
 				<div>{{post.content}}</div>
 			</div>
 		</div>
@@ -16,7 +16,7 @@
 			</div>
 			<div class="right-box">
 				<div>{{p.content}}</div>
-				<div>{{p.create_time}}</div>
+				<span class="time">{{p.create_time}}</span>
 			</div>
 		</div>
 		
@@ -83,7 +83,12 @@
 		flex:1
 	}
 	.right-box{
+		min-height:100px;
 		flex:4
 	}
 }
+	
+	.time{
+		float:right;
+	}
 </style>
