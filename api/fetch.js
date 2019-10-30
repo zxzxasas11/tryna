@@ -50,6 +50,7 @@ export default {
                 url: url,
                 method: method,
                 data: data,
+                params:data,
                 headers: {'Content-Type': 'application/json;charset=UTF-8'}
             })
                 .then(response => {

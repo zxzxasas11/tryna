@@ -88,6 +88,9 @@
                 return rdata;
             }
         },
+        mounted(){
+            this.tableHeight = document.body.clientHeight - 140 - this.navHeight;
+        },
         methods: {
             handleSizeChange(val) {
                 this.pageSize = val;
@@ -105,12 +108,7 @@
                 this.tableData.splice(index, 1);
             },
             select(method, val, index) {
-                console.log(val);
-                let info = {
-                    obj: val,
-                    index: index
-                };
-                this.$emit(method, info);//
+                this.$emit(method, val);//
             },
             rowClick(row, column) {
                 if (column.label === "操作") {           //如果点击的是操作那一列，则不做任何处理;
@@ -118,11 +116,6 @@
                 }
                 this.$emit("rowClick", row);
             }
-        },
-        computed: {
-            tableHeight() {
-                return 400 //document.body.clientHeight - 140 - this.navHeight;
-            },
         }
     }
 </script>

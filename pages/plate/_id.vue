@@ -8,7 +8,7 @@
 			<tr v-for="p in postList">
 				<td></td>
 				<td><nuxt-link :to="'/post/'+p._id">{{p.title}}</nuxt-link></td>
-				<td>{{p.creator.username}}</td>
+				<td>{{p.username}}</td>
 				<td>{{p.create_time}}</td>
 			</tr>
 		</table>

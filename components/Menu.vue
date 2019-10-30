@@ -88,6 +88,7 @@
 <style scoped lang="less">
     .menu-box {
         height: 100%;
+        min-height:400px;
         text-align: left;
         
         ul {

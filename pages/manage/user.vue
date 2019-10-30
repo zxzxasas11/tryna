@@ -11,12 +11,12 @@
 			</div>
 		</div>
 		<Table
-				:totalSize="tableTotalData"
+				:totalSize="info.count"
 				@del="del"
 				@edit="edit"
 				navHeight=40
 				ref="table"
-				:tableData="info"
+				:tableData="info.data"
 				:tableKey="tableKey"
 				:btn_group="btn">
 		</Table>
@@ -25,6 +25,7 @@
 
 <script>
     import Table from '~/components/Table'
+    import user from "../../api/user";
     export default {
         data() {
             return {
@@ -34,17 +35,25 @@
                     {name: "删除", method:"del"},
                     {name: "修改", method: "edit"},
                 ],
-                info: [],
+                info: {},
                 tableKey: [
                     {name: '姓名', value: 'username'},
                     {name: '账号', value: 'code'},
+	                {name:'注册时间',value:'create_time'},
+	                {name:'发帖数',value:"posts"},
+	                {name:'回帖数',value:'comments'}
                     /*{name: '邮箱', value: 'email'},
                     {name: '性别', value: 'sex',filter:{0:"男",1:"女"}},*/
                 ],
             }
         },
         components: {Table},
-
+        async asyncData ({ params }) {
+            let {data} = await user.getUserList({});
+            return{
+                info:data
+            }
+        },
         methods: {
             search(obj) {
             },
@@ -64,6 +73,6 @@
 </script>
 
 <style scoped lang="less">
-	@import '../../../assets/css/tableManage.less';
+	@import '../../assets/css/tableManage.less';
 </style>
 

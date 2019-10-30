@@ -7,7 +7,6 @@ export const state = () => ({
 
 export const mutations = {
     add_visit(state, view) {
-        console.log('--------------');
         state.visitedViews.push({
             name: view.name,
             url: view.url,
