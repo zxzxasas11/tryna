@@ -6,6 +6,7 @@ export default {
             console.log(cookies.get("token"));
             state.user.token = cookies.get("token");
         }
+        return state.user.token
         //return jwt_decode(state.user.token);
     },
     getT:state=> {

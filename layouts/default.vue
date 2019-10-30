@@ -1,7 +1,5 @@
 <template>
-	<div>
-		<nuxt keep-alive/>
-	</div>
+	<nuxt keep-alive/>
 </template>
 <script>
     export default {
@@ -10,7 +8,6 @@
             }
         },
         mounted() {
-            //let flag = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i);
         }
     }
 </script>
@@ -25,6 +22,7 @@
 		-moz-osx-font-smoothing: grayscale;
 		-webkit-font-smoothing: antialiased;
 		box-sizing: border-box;
+		height:100%;
 	}
 	
 	*,
