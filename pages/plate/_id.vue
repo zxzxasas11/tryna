@@ -19,7 +19,12 @@
                 postList:[]
             }
         },
-        
+        async asyncData ({ params }) {
+            let {data} = await post.getList({categoryId:params.id});
+            return{
+                postList:data.data
+            }
+        },
 	    methods:{
             getDetail(id){
                 post.getList({categoryId:id}).then(res=>{
@@ -28,7 +33,7 @@
             }
 	    },
 	    created() {
-            this.getDetail(this.$route.params.id);
+            //this.getDetail(this.$route.params.id);
         }
     }
 </script>

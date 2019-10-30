@@ -12,7 +12,7 @@
 		</div>
 		<div class="line" v-for="p in post.comments">
 			<div class="left-box">
-				<div>{{p.from}}</div>
+				<div>{{p.from.username}}</div>
 			</div>
 			<div class="right-box">
 				<div>{{p.content}}</div>
@@ -28,6 +28,7 @@
 </template>
 
 <script>
+    import axios from '~/plugins/http'
 	import post from "../../api/post";
     export default {
         head(){
@@ -51,14 +52,14 @@
             }
         },
 	    created() {
-            this.getPost(this.$route.params.id);
+            //this.getPost(this.$route.params.id);
         },
-        /*async asyncData ({ params }) {
-            return await post.getOne(params.id).then(res=>{
-                console.log(res);
-                return {post :res.data};
-            })
-        },*/
+        async asyncData ({ params }) {
+            let {data} = await post.getOne(params.id);
+            return{
+                post:data
+            }
+        },
 	    methods:{
             getPost(id){
                post.getOne(id).then(res=>{
