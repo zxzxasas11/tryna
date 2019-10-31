@@ -12,6 +12,7 @@ axios.defaults.timeout = 5000;
 import cookies from 'js-cookie'
 axios.interceptors.request.use((config) => {
     let token =cookies.get("token");
+    console.log(token);
     if (token) {
         config.headers.common['Authorization'] = 'Bearer ' + token//localStorage.getItem("token");
     }
@@ -49,8 +50,8 @@ export default {
             axios({
                 url: url,
                 method: method,
-                data: data,
-                params:data,
+                data: method==="POST"?data:undefined,
+                params:method==='GET'?data:undefined,
                 headers: {'Content-Type': 'application/json;charset=UTF-8'}
             })
                 .then(response => {

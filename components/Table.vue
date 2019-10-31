@@ -101,12 +101,6 @@
                 this.currentPage = val;
                 this.$parent.changeCurrentPage(val);
             },
-            /*click(callback, n) {
-                callback(n);
-            },*/
-            del(index) {
-                this.tableData.splice(index, 1);
-            },
             select(method, val, index) {
                 this.$emit(method, val);//
             },

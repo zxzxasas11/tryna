@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="nav">
-			<div class="fl title">用户管理</div>
+			<div class="fl title">日志管理</div>
 			<div class="fl search" style="width:250px;">
 				<el-input placeholder="搜索" v-model="searchCondition"  @keyup.native.enter="infoSearch">
 					<el-button slot="append" icon="el-icon-search" @click="infoSearch"></el-button>
@@ -11,20 +11,18 @@
 			</div>
 		</div>
 		<Table
-				:totalSize="5"
-				@del="del"
-				@edit="edit"
+				:totalSize="info.count"
 				navHeight=40
 				ref="table"
 				:tableData="info.data"
-				:tableKey="tableKey"
-				:btn_group="btn">
+				:tableKey="tableKey">
 		</Table>
 	</div>
 </template>
 
 <script>
     import Table from '~/components/Table'
+    import log from "../../api/log";
     import user from "../../api/user";
     export default {
         data() {
@@ -32,40 +30,42 @@
                 searchCondition:"",
                 tableTotalData:null,
                 btn: [
-                    {name: "删除", method:"del"},
-                    {name: "修改", method: "edit"},
                 ],
                 info: {},
                 tableKey: [
-                    {name: '姓名', value: 'username'},
-                    {name: '账号', value: 'code'},
-	                {name:'注册时间',value:'create_time'},
-	                {name:'发帖数',value:"posts"},
-	                {name:'回帖数',value:'comments'}
-                    /*{name: '邮箱', value: 'email'},
-                    {name: '性别', value: 'sex',filter:{0:"男",1:"女"}},*/
+                    {name: '用户名', value: 'username'},
+                    {name: '提交方式', value: 'method'},
+	                {name:'ip',value:'host'},
+	                {name:'接口地址',value:"url"},
+	                {name:'描述',value:'desc'},
+	                {name:'请求时间',value:'create_time'}
                 ],
+	            page:{
+                    currentPage:1
+	            }
             }
         },
         components: {Table},
-        async asyncData ({ params }) {
-            let {data} = await user.getUserList({});
+        async asyncData ({params}) {
+            let {data} = await log.getLogList({});
             return{
                 info:data
             }
         },
         methods: {
-            search(obj) {
+            async search(obj) {
+                await log.getLogList(obj).then(res=>{
+                    this.info = res.data;
+                })
             },
             infoSearch(){
 
             },
-            //删除用户
-            del(val){
-            },
-            //修改用户
-            edit(val){
-            },
+            changeCurrentPage(val){
+                this.page.currentPage = val;
+                this.$router.push({path:'/manage/log',query:{currentPage:val}});
+                this.search(this.page);
+            }
         },
         mounted() {
         },

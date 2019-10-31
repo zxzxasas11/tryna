@@ -1,11 +1,9 @@
 <template>
 	<div style="height:100%;">
-		<title>
+		<div class="title">
 			<span>后台管理</span>
-			<div class="user-box">
-				<nuxt-link to="/Home">返回主页</nuxt-link>
-			</div>
-		</title>
+			<nuxt-link to="/Home">返回主页</nuxt-link>
+		</div>
 		<div class="window">
 			<div class="nav">
 				<Menu></Menu>
@@ -44,18 +42,13 @@
                 this.$router.push('/SysHome');
             }
         },
-        computed: {
-            includedComponents() {
-                return this.$store.getters.getKeepAlive.toString().replace(/\//g, "");
-            }
-        },
     }
 </script>
 
 <style scoped lang="less">
 	@height: 60px;
 	@nav-width: 200px;
-	title {
+	.title {
 		background-color: #324057;
 		display: block;
 		font-size: 20px;
@@ -65,7 +58,7 @@
 		line-height: @height;
 		padding-left:20px;
 		
-		.user-box {
+		a {
 			float: right;
 			padding-right: 40px;
 			font-size:14px;

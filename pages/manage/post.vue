@@ -42,14 +42,12 @@
                     {name: '发帖人', value: 'username'},
                     {name: '发帖时间',value:'create_time'},
                     {name: '回帖数',value:'comments'}
-                    /*{name: '邮箱', value: 'email'},
-                    {name: '性别', value: 'sex',filter:{0:"男",1:"女"}},*/
                 ],
             }
         },
         components: {Table},
         async asyncData ({ params }) {
-            let {data} = await post.getList({flag:1});
+            let {data} = await post.getList({});
             return{
                 info:data
             }
