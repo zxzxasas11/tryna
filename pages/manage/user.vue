@@ -11,7 +11,7 @@
 			</div>
 		</div>
 		<Table
-				:totalSize="5"
+				:totalSize="info.count"
 				@del="del"
 				@edit="edit"
 				navHeight=40
@@ -42,12 +42,11 @@
 	                {name:'注册时间',value:'create_time'},
 	                {name:'发帖数',value:"posts"},
 	                {name:'回帖数',value:'comments'}
-                    /*{name: '邮箱', value: 'email'},
-                    {name: '性别', value: 'sex',filter:{0:"男",1:"女"}},*/
                 ],
             }
         },
         components: {Table},
+        middleware:"admin",
         async asyncData ({ params }) {
             let {data} = await user.getUserList({});
             return{

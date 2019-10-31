@@ -72,6 +72,7 @@
                 info: data
             }
         },
+        middleware:"admin",
         methods: {
             refreshTree(){
                 category.getCategory({}).then(res=>{
@@ -84,7 +85,6 @@
             },
 		    remove(node,data){},
             async addCategory(){
-                console.log(this.plate);
                 await category.add(this.plate).then(res=>{
                     this.dialogVisible = false;
                     this.$message.success("添加成功");

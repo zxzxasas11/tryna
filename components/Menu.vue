@@ -65,7 +65,6 @@
             },
             addTags(m) {
                 let visit = this.$store.getters.visitedViews;
-                console.log(m,visit);
                 this.$store.commit("tags/set_active_index",m.url);
                 for (let i = 0; i < visit.length; i++) {
                     if (m.name === visit[i].name) {

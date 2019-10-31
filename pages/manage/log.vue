@@ -46,6 +46,7 @@
             }
         },
         components: {Table},
+        middleware:"admin",
         async asyncData ({params}) {
             let {data} = await log.getLogList({});
             return{

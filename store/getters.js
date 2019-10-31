@@ -3,14 +3,13 @@ import cookies from 'js-cookie'
 export default {
     getToken:state=> {
         if (state.user.token === "") {
-            console.log(cookies.get("token"));
             state.user.token = cookies.get("token");
         }
         return state.user.token
         //return jwt_decode(state.user.token);
     },
     getT:state=> {
-        return state.user.token;
+        return cookies.get("token");
     },
     visitedViews: state => state.tags.visitedViews,
     activeIndex: state => state.tags.activeIndex,
