@@ -3,10 +3,10 @@
 		<div>
 			<h2 class="text-center">欢迎进入{{categoryInfo.name}}专区</h2>
 		</div>
-		<el-button class="btn text-right">发布新帖</el-button>
+		<nuxt-link :to="{path:`/plate/${$route.params.id}/addPost`}" class="btn text-right" >发布新帖</nuxt-link>
 		<table class="post-box">
 			<tr v-for="p in postList">
-				<td></td>
+				<td>{{p.comments}}</td>
 				<td><nuxt-link :to="'/post/'+p._id">{{p.title}}</nuxt-link></td>
 				<td>{{p.username}}</td>
 				<td>{{p.create_time}}</td>
@@ -16,8 +16,8 @@
 </template>
 
 <script>
-	import post from "../../api/post";
-	import category from "../../api/category";
+	import post from "~/api/post";
+	import category from "~/api/category";
     export default {
         data(){
             return{

@@ -13,9 +13,8 @@ import cookies from 'js-cookie'
 //console.log(process.client,process.server);
 axios.interceptors.request.use((config) => {
     let token =cookies.get("token");
-    console.log(token);
     if (token) {
-        config.headers.common['Authorization'] = 'Bearer ' + token//localStorage.getItem("token");
+        config.headers.common['Authorization'] = 'Bearer ' + token;
     }
     return config
 }, (error) => {

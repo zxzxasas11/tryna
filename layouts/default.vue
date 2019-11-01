@@ -1,12 +1,17 @@
 <template>
-	<nuxt/>
+	<div style="height:100%">
+		<navHeader></navHeader>
+		<nuxt/>
+	</div>
 </template>
 <script>
+	import navHeader from "~/components/navHeader";
     export default {
         data() {
             return {
             }
         },
+	    components:{navHeader},
         mounted() {
         }
     }

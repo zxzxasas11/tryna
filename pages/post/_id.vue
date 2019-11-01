@@ -7,7 +7,7 @@
 			<div class="right-box">
 				<div>{{post.title}}</div>
 				<span class="time">{{post.create_time}}</span>
-				<div>{{post.content}}</div>
+				<div v-html="post.content"></div>
 			</div>
 		</div>
 		<div class="line" v-for="p in post.comments">
@@ -15,14 +15,24 @@
 				<div>{{p.from.username}}</div>
 			</div>
 			<div class="right-box">
-				<div>{{p.content}}</div>
+				<div v-html="p.content"></div>
 				<span class="time">{{p.create_time}}</span>
 			</div>
 		</div>
 		
 		<div>
-			<el-input type="textarea" rows="6" v-model="content"></el-input>
-			<el-button @click="publish">发表回复</el-button>
+			<div id="editor">
+				<no-ssr>
+					<mavon-editor
+							style="height: 400px;width: 100%;"
+							ref="md"
+							@imgAdd="imgAdd"
+							@change="updateDoc"
+							:ishljs="true">
+					</mavon-editor>
+				</no-ssr>
+				<el-button @click="publish">提交回复</el-button>
+			</div>
 		</div>
 	</div>
 </template>
@@ -30,6 +40,8 @@
 <script>
     import axios from '~/plugins/http'
 	import post from "../../api/post";
+    import {mavonEditor} from 'mavon-editor'
+    import 'mavon-editor/dist/css/index.css'
     export default {
         head(){
             return {
@@ -45,6 +57,7 @@
                 }]
             }
         },
+        components: {mavonEditor},
         data(){
             return{
                 post:{},
@@ -71,7 +84,13 @@
                     this.$message.success("回复成功");
                     this.getPost(this.$route.params.id);
                 })
-            }
+            },
+            imgAdd(){
+
+            },
+            updateDoc(markdown, html){
+                this.content = html;
+            },
 	    }
     }
 </script>

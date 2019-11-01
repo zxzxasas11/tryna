@@ -1,4 +1,5 @@
 //import userFunction from '~/api/user';
+const cookieparser = require('cookieparser');
 import cookies from 'js-cookie'
 export const state = () => ({
     token:"",
@@ -28,6 +29,7 @@ export const mutations = {
 };
 
 export const actions ={
+
     userLogin({commit},params){
         /*userFunction.login(params).then(res=>{
             commit("user_login",res.data.token);

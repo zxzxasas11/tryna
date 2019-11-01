@@ -1,40 +1,40 @@
 <template>
-	<div>
-		<el-tree
-				class="tree"
-				:data="info"
-				show-checkbox
-				default-expand-all
-				node-key="_id"
-				empty-text=""
-				ref="tree"
-				highlight-current
-				:props="defaultProps">
-			<span class="" slot-scope="{ node, data }">
-				{{node.label}}
-                <span>
-					<el-button
-							type="text"
-							size="mini"
-							@click="() => append(data)">
-						<i class="el-icon-plus"></i>
-					</el-button>
-					<el-button
-							type="text"
-							size="mini"
-							@click="() => remove(node, data)">
-						<i class="el-icon-minus"></i>
-					</el-button>
-					<!--<el-button
-							type="text"
-							size="mini"
-							@click="() => edit(data)">
-						<i class="el-icon-edit"></i>
-					</el-button>-->
-                </span>
-			</span>
-		</el-tree>
-		
+	<div style="height:calc(100% - 40px)">
+		<div class="left-window">
+			<el-button @click="addC">增加大类</el-button>
+			<el-tree
+					class="tree"
+					:data="info"
+					show-checkbox
+					default-expand-all
+					node-key="_id"
+					empty-text=""
+					ref="tree"
+					:expand-on-click-node="false"
+					highlight-current
+					:props="defaultProps">
+				<span class="" slot-scope="{ node, data }">
+					<span @click="open(node,data)">{{node.label}}</span>
+	                <span>
+						<el-button
+								type="text"
+								size="mini"
+								@click="() => append(data)">
+							<i class="el-icon-plus"></i>
+						</el-button>
+						<el-button
+								type="text"
+								size="mini"
+								@click="() => remove(node, data)">
+							<i class="el-icon-minus"></i>
+						</el-button>
+	                </span>
+				</span>
+			</el-tree>
+		</div>
+		<div class="right-window">
+			<nuxt-child></nuxt-child>
+		</div>
 		<el-dialog
 				:close-on-click-modal="false"
 				:title="dialogTitle"
@@ -90,13 +90,35 @@
                     this.$message.success("添加成功");
                     this.refreshTree();
                 })
-            }
+            },
+            //增加大类
+            addC(){
+                this.plate = {};
+                this.dialogVisible = true;
+                
+            },
+	        open(node,data){
+                console.log(data._id);
+                this.$router.push("/manage/plate/"+data._id);
+	        }
         }
     }
 </script>
 
 <style scoped lang="less">
+	@width:200px;
 .tree{
 	width:200px;
 }
+	
+	.left-window{
+		float: left;
+		width: @width;
+	}
+	
+	.right-window{
+		float: left;
+		width:calc(100% - @width);
+		height:100%;
+	}
 </style>

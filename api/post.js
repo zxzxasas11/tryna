@@ -10,5 +10,8 @@ export default {
     },
     addComment(params){
         return fetch.json("/comment/add","POST",params);
+    },
+    addPost(params){
+        return fetch.json("/post/add",'POST',params);
     }
 }
