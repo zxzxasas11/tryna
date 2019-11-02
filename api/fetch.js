@@ -50,7 +50,7 @@ export default {
             axios({
                 url: url,
                 method: method,
-                data: method==="POST"?data:undefined,
+                data: method!=="GET"?data:undefined,
                 params:method==='GET'?data:undefined,
                 headers: {'Content-Type': 'application/json;charset=UTF-8'}
             })

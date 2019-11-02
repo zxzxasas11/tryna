@@ -8,6 +8,7 @@
 				</el-input>
 			</div>
 			<div class="fr btn">
+				<span @click="openDialog"><i class="el-icon-circle-plus-outline"></i>添加权限</span>
 			</div>
 		</div>
 		<Table
@@ -22,7 +23,7 @@
 		
 		<el-dialog
 				:close-on-click-modal="false"
-				title="权限管理"
+				:title="operateType==='add'?'权限添加':'权限修改'"
 				:visible.sync="dialogVisible">
 			<el-form label-width="80px" :model="form" ref="info">
 				<el-form-item style="text-align:left" label="权限名称">
@@ -38,6 +39,13 @@
 					</el-select>
 				</el-form-item>
 				
+				<el-form-item style="text-align:left" label="基础权限">
+					<el-select v-model="form.base">
+						<el-option value=1 label="是"></el-option>
+						<el-option value=0 label="否"></el-option>
+					</el-select>
+				</el-form-item>
+				
 				<el-form-item style="text-align:left" label="url">
 					<el-input v-model="form.url"></el-input>
 				</el-form-item>
@@ -47,7 +55,7 @@
 				</el-form-item>
 			</el-form>
 			<div slot="footer" class="dialog-footer">
-				<el-button type="primary" @click="addCategory">确 定</el-button>
+				<el-button type="primary" @click="submitForm">确 定</el-button>
 			</div>
 		</el-dialog>
 	</div>
@@ -69,13 +77,15 @@
                 tableKey: [
                     {name: '名称', value: 'name'},
                     {name: '提交方式', value: 'method'},
-	                {name:'接口地址',value:"url"},
+                    {name: '是否为基础权限', value: 'base'},
+	                {name: '接口地址',value:"url"},
                 ],
 	            page:{
                     currentPage:1
 	            },
 	            dialogVisible:false,
-	            form:{}
+	            form:{},
+	            operateType:""
             }
         },
         components: {Table},
@@ -92,10 +102,34 @@
             infoSearch(){
 
             },
+	        //点击添加权限按钮
+            openDialog(){
+                this.operateType = "add";
+                this.form={};
+                this.dialogVisible = true;
+            },
 	        edit(val){
                 this.dialogVisible = true;
-                console.log(val);
+                this.form = val;
+                this.operateType="edit";
 	        },
+            submitForm(){
+                let data = JSON.parse(JSON.stringify(this.form));
+                data.base = parseInt(data.base);
+                switch (this.operateType) {
+	                case "add":
+                        authority.add(this.form).then(res=>{
+                            this.dialogVisible=false;
+                        });
+	                    break;
+                    case "edit":
+                        console.log(data);
+                        authority.edit(data).then(res=>{
+                            this.dialogVisible=false;
+                        });
+                        break;
+                }
+            },
             changeCurrentPage(val){
                 this.page.currentPage = val;
                 this.$router.push({path:'/manage/log',query:{currentPage:val}});
