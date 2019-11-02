@@ -1,22 +1,9 @@
 <template>
 	<div class="box">
-		<!--<el-form label-width="80px" :model="user"  ref="user">
-			<div style="margin:10px 0;font-size:20px;">登录</div>
-			<el-form-item style="text-align:left" label="账号">
-				<el-input style="width:250px;"  v-model="user.code"></el-input>
-			</el-form-item>
-			<el-form-item style="text-align:left" label="密码">
-				<el-input style="width:250px;" type="password" v-model="user.password"></el-input>
-			</el-form-item>
-		</el-form>
-		<div slot="footer" class="dialog-footer">
-			<el-button >取 消</el-button>
-			<el-button type="primary" @click="login">确 定</el-button>
-		</div>-->
 		<el-tabs v-model="activeName" @tab-click="handleClick">
 			<el-tab-pane label="用户登录" name="login">
 				<el-form label-width="80px" :model="user"  ref="user">
-					<el-form-item style="text-align:left" label="账号">
+					<el-form-item style="text-align:left" label="登录账号">
 						<el-input style="width:250px;"  v-model="user.code"></el-input>
 					</el-form-item>
 					<el-form-item style="text-align:left" label="密码">
@@ -37,7 +24,6 @@
 						<el-input style="width:250px;" type="password" v-model="register.password"></el-input>
 					</el-form-item>
 				</el-form>
-				
 				<div class="dialog-footer">
 					<el-button >取 消</el-button>
 					<el-button type="primary" @click="regist">确 定</el-button>
@@ -71,6 +57,7 @@
                 console.log(tab, event);
             },
             login(data){
+                alert(1);
                 user.login(data).then(res=>{
                     this.$store.dispatch("user/setToken",res.data.token);
                     this.$router.replace("/");

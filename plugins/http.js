@@ -1,3 +1,4 @@
+/*
 import  axios from 'axios'
 import cookies from "js-cookie";
 let options = {};
@@ -12,6 +13,7 @@ axios.interceptors.request.use((config) => {
 });
 options.baseURL = "http://192.168.31.226:9357";
 export default axios.create(options)
+*/
 
 
 
