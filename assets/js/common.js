@@ -68,8 +68,6 @@ export  default {
     //清空json
     clearJson(obj){
         for(let key in obj){
-            //alert(key + ":"+typeof (obj[key]));
-            //obj[key]=null;
             if(typeof (obj[key])!=="object"){
                 obj[key] = "";
             }

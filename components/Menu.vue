@@ -46,6 +46,7 @@
                             {id:"0102",name:"分类管理",url:"/manage/plate"},
                             {id:"0103",name:"日志管理",url:"/manage/log"},
                             {id:"0104",name:"权限管理",url:"/manage/authority"},
+                            {id:"0105",name:"角色管理",url:"/manage/role"},
                         ]
                     },
                     {id:'02',name:"模块管理",url:"",children:[

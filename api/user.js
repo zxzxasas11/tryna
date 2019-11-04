@@ -10,5 +10,8 @@ export default {
     },
     getUserList(params){
         return fetch.json("/user/getAll","GET",params);
+    },
+    edit(id,params){
+        return fetch.json(`/user/${id}`,"PUT",params);
     }
 }

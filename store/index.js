@@ -12,7 +12,7 @@ export const mutations = {
 };
 
 export const actions={
-    /*nuxtClientInit({ commit}, { req }) {
-        commit('set_token', cookies.get("token"));
-    },*/
+    nuxtClientInit({ commit}, { req }) {
+        commit('set_token', process.client?cookies.get("token"):req.headers.cookie);
+    },
 }

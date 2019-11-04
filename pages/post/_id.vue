@@ -69,6 +69,7 @@
         },
         async asyncData ({ params }) {
             let {data} = await post.getOne(params.id);
+            console.log(data);
             return{
                 post:data
             }

@@ -57,7 +57,6 @@
                 console.log(tab, event);
             },
             login(data){
-                alert(1);
                 user.login(data).then(res=>{
                     this.$store.dispatch("user/setToken",res.data.token);
                     this.$router.replace("/");

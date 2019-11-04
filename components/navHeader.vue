@@ -1,11 +1,11 @@
 <template>
 	<div class="nav-line">
-		<div class="fl">
+		<div class="fl head">
 			<nuxt-link to="/">首页</nuxt-link>
+			<nuxt-link to="/manage">后台</nuxt-link>
 		</div>
 		<div class="login-box fr">
 			<ul v-if="$store.getters.getT!==null&&$store.getters.getT!==''">
-				<li style="width:100px;"></li>
 				<li>注销</li>
 			</ul>
 			<ul v-else>
@@ -16,18 +16,24 @@
 </template>
 
 <script>
+    import jwt_decode from 'jwt-decode'
     export default {
         data(){
             return{
-				token:""
+				token:{}
             }
         },
         created() {
 
         },
-        async fetch({ app, store, params}) {
-            console.log(store.getters.getT);
-            //return {token:store.getters.getT}
+	    mounted(){
+            console.log(this.$store.getters.getToken);
+	    },
+        async asyncData ({params,store}) {
+            let token = store.getters.getT;
+            return{
+                token:token
+            }
         },
         methods:{
         },
@@ -37,10 +43,15 @@
 </script>
 
 <style scoped lang="less">
-	a{
+	head{
+		a{
+			display: inline-block;
+		}
+	}
+	/*a{
 		height: inherit;
 		display: inherit;
-	}
+	}*/
 	.nav-line{
 		height:60px;
 		line-height:60px;

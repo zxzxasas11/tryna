@@ -11,5 +11,13 @@ export default {
     },
     add(params){
         return fetch.json("/category/add","POST",params);
+    },
+    //添加管理员
+    addAdmin(params){
+        return fetch.json("/category/addAdmin","POST",params);
+    },
+    //撤销管理员
+    delAdmin(categoryId,userId){
+        return fetch.json(`/category/${categoryId}/${userId}`,"DELETE",{});
     }
 }

@@ -1,12 +1,13 @@
 import jwt_decode from 'jwt-decode'
 import cookies from 'js-cookie'
 export default {
-    getToken:(state,context)=> {
-        //return jwt_decode(state.token);
+    getToken:(state)=> {
+        return state.token;
     },
     getT:state=> {
-        console.log(state.token);
-        return state.token;
+        if(process.client){
+            return jwt_decode(cookies.get("token"));
+        }
     },
     visitedViews: state => state.tags.visitedViews,
     activeIndex: state => state.tags.activeIndex,

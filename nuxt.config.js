@@ -40,7 +40,7 @@ module.exports = {
         '~/plugins/router',
         {src:'~/plugins/http',ssr: false},
         { src: '@/plugins/vue-mavon-editor', srr: false },
-        //'~/plugins/nuxt-client-init.client.js'
+        //{src:'~/plugins/nuxt-client-init.client.js',ssr:false}
     ],
     /*
     ** Nuxt.js dev-modules

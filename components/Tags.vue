@@ -82,7 +82,7 @@
                         }
                     }
                     if (!flag) {
-                        this.$store.commit('add_visit', {url: '/' + to.path.split('/')[1], name: to.name});
+                        this.$store.commit('tags/add_visit', {url: '/' + to.path.split('/')[1], name: to.name});
                         this.$store.commit('tags/set_active_index', '/' + to.path.split('/')[1]);
                     }
                 }
