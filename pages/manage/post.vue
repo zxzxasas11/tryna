@@ -13,7 +13,6 @@
 		<Table
 				:totalSize="info.count"
 				@del="del"
-				@edit="edit"
 				navHeight=40
 				ref="table"
 				:tableData="info.data"
@@ -32,8 +31,7 @@
                 searchCondition:"",
                 tableTotalData:null,
                 btn: [
-                    {name: "删除", method:"del"},
-                    {name: "修改", method: "edit"},
+                    {name: "删除", method:"del"}
                 ],
                 info: {},
                 tableKey: [
@@ -61,9 +59,6 @@
             },
             //删除用户
             del(val){
-            },
-            //修改用户
-            edit(val){
             },
         },
         mounted() {

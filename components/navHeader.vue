@@ -6,7 +6,8 @@
 		</div>
 		<div class="login-box fr">
 			<ul v-if="$store.getters.getT!==null&&$store.getters.getT!==''">
-				<li>注销</li>
+				<li><nuxt-link :to="'/personal/'+$store.getters.getUserId">个人中心</nuxt-link></li>
+				<li>注销{{username}}</li>
 			</ul>
 			<ul v-else>
 				<li><nuxt-link to="/login">登录/注册</nuxt-link></li>
@@ -16,29 +17,22 @@
 </template>
 
 <script>
-    import jwt_decode from 'jwt-decode'
     export default {
         data(){
             return{
-				token:{}
             }
         },
         created() {
-
         },
-	    mounted(){
-            console.log(this.$store.getters.getToken);
-	    },
-        async asyncData ({params,store}) {
-            let token = store.getters.getT;
-            return{
-                token:token
+	    computed:{
+            username(){
+                return this.$store.getters.getUserName
             }
-        },
+	    },
+	    mounted(){
+	    },
         methods:{
         },
-        computed:{
-        }
     }
 </script>
 

@@ -34,7 +34,7 @@
         },
         mounted() {
             if (this.$route.path !== '/SysHome') {
-                this.$store.commit('tags/add_visit', {url: this.$route.path, name: this.$route.name});
+                //this.$store.commit('tags/add_visit', {url: this.$route.path, name: this.$route.name});
                 this.$store.commit('tags/set_active_index', this.$route.path);
 
             } else {

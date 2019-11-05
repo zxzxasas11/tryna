@@ -4,9 +4,14 @@ export default {
     getToken:(state)=> {
         return state.token;
     },
-    getT:state=> {
+    getUserName:state=> {
         if(process.client){
-            return jwt_decode(cookies.get("token"));
+            return jwt_decode(cookies.get("token")).username;
+        }
+    },
+    getUserId:state=>{
+        if(process.client){
+            return jwt_decode(cookies.get("token")).userId;
         }
     },
     visitedViews: state => state.tags.visitedViews,

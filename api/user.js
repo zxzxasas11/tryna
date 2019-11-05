@@ -13,5 +13,9 @@ export default {
     },
     edit(id,params){
         return fetch.json(`/user/${id}`,"PUT",params);
+    },
+    //获取个人详情
+    getByUserId(userId){
+        return fetch.json(`/user/${userId}`,"GET",{});
     }
 }

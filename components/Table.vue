@@ -77,8 +77,6 @@
             }
         },
         props: ['tableData', 'tableKey', 'totalSize', 'btn_group', 'navHeight'],
-        created() {
-        },
         filters:{
             filterItem(data,value){
                 let rdata = data;
@@ -88,8 +86,13 @@
                 return rdata;
             }
         },
-        mounted(){
-            this.tableHeight = document.body.clientHeight - 140 - this.navHeight;
+        computed:{
+            tableHeight(){
+                if(process.client){
+                    return document.body.clientHeight - 140 - this.navHeight;
+                }
+                
+            }
         },
         methods: {
             handleSizeChange(val) {

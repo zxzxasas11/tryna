@@ -67,24 +67,17 @@
         },
         watch:{
             '$route'(to) {
-                if(this.$route.meta.needTabs===false){
-                    //this.$store.dispatch('addVisitedViews', {url: '/' + to.path.split('/')[1], name: "字典类型管理"});
-                    this.$store.commit('tags/set_active_index', '/' + to.path.split('/')[1]);
-                }
-                else{
-                    let flag = false;
-                    for (let option of this.options ) {
-                        if (option.name === to.name) {
-                            //if (to.name.indexOf(option.name)>=0) {
-                            flag = true;
-                            this.$store.commit('tags/set_active_index', '/' + to.path.split('/')[1]);
-                            break;
-                        }
-                    }
-                    if (!flag) {
-                        this.$store.commit('tags/add_visit', {url: '/' + to.path.split('/')[1], name: to.name});
+                let flag = false;
+                for (let option of this.options ) {
+                    if (option.url === to.url) {
+                        flag = true;
                         this.$store.commit('tags/set_active_index', '/' + to.path.split('/')[1]);
+                        break;
                     }
+                }
+                if (!flag) {
+                    //this.$store.commit('tags/add_visit', {url: '/' + to.path.split('/')[1], name: to.name});
+                    //this.$store.commit('tags/set_active_index', '/' + to.path.split('/')[1]);
                 }
             }
         }

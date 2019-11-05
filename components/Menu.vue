@@ -23,9 +23,9 @@
                         class="list-line"
                         :key="m.id" :index="m.id" v-for="m in menu.children">
                     <el-menu-item :index="m.id">
-                        <nuxt-link class="second_menu_a" :to="m.url" @click.native="addTags(m)">
+                        <div class="second_menu_a" :to="m.url" @click="addTags(m)">
                             {{m.name}}
-                        </nuxt-link>
+                        </div>
                     </el-menu-item>
                 </el-menu-item-group>
             </el-submenu>
@@ -73,8 +73,10 @@
                         return;
                     }
                 }
+                console.log(m);
+                console.log(visit);
+                this.$router.push(m.url);
                 this.$store.commit("tags/add_visit",m);
-                //this.$store.dispatch("addVisitedViews", m);
             }
         },
         mounted() {
