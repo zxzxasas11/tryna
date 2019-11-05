@@ -73,8 +73,6 @@
                         return;
                     }
                 }
-                console.log(m);
-                console.log(visit);
                 this.$router.push(m.url);
                 this.$store.commit("tags/add_visit",m);
             }

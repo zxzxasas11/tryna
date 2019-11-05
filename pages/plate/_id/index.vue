@@ -35,7 +35,6 @@
         async asyncData({params}) {
             let {data} = await post.getList({categoryId: params.id});
             let c = await category.getOne({id: params.id});
-            console.log(data);
             return {
                 postList: data.data,
                 categoryInfo: c.data

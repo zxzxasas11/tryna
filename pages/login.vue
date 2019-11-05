@@ -54,7 +54,6 @@
         },
         methods:{
             handleClick(tab, event) {
-                console.log(tab, event);
             },
             login(data){
                 user.login(data).then(res=>{

@@ -48,10 +48,15 @@
         components: {Table},
         middleware:"admin",
         async asyncData ({params}) {
-            let {data} = await log.getLogList({});
-            return{
-                info:data
+            try {
+                let {data} = await log.getLogList({});
+                return{
+                    info:data
+                }
+            }catch (e) {
+	            console.log(e)
             }
+            
         },
         methods: {
             async search(obj) {

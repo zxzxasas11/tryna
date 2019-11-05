@@ -8,7 +8,6 @@ export default function ({ store, redirect,req},) {
         }
     }
     else{
-        console.log("token不存在");
         return redirect("/login");
     }
 }

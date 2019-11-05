@@ -119,12 +119,13 @@
                 switch (this.operateType) {
 	                case "add":
                         authority.add(this.form).then(res=>{
+                            this.$message.success("添加成功");
                             this.dialogVisible=false;
                         });
 	                    break;
                     case "edit":
-                        console.log(data);
                         authority.edit(data).then(res=>{
+                            this.$message.success("修改成功");
                             this.dialogVisible=false;
                         });
                         break;

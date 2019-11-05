@@ -81,7 +81,6 @@
         async asyncData ({ params }) {
             let {data} = await user.getUserList({});
             let roles = await role.getAll({});
-            console.log(roles);
             return{
                 info:data,
 	            roleList:roles.data.data
@@ -105,7 +104,6 @@
                 this.dialogVisible = true;
             },
             userSubmit(){
-                console.log(this.user);
                 user.edit(this.editUserId,this.user).then(res=>{
                     this.$message.success('修改成功');
                     this.dialogVisible = false;

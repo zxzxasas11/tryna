@@ -83,7 +83,6 @@
         async asyncData ({ params }) {
             let {data} = await role.getAll({});
             let authData = await authority.getAll({});
-            console.log(authData);
             return{
                 info:data,
                 authorityList:authData.data.data
@@ -116,7 +115,6 @@
                 switch (this.postTitle) {
                     case "增加角色":
                         role.add(this.addRole).then(res=>{
-                            console.log(res);
                             this.$message.success("添加成功");
                             this.getData();
                             this.postVisible = false;
@@ -151,7 +149,7 @@
                   authority:data
                 };
                 role.edit(this.editRoleId,putData).then(res=>{
-                    console.log(res);
+                    this.$message.success("保存成功");
                 })
             }
         }

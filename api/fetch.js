@@ -10,7 +10,6 @@ axios.defaults.baseURL = url;
 //axios.defaults.withCredentials=true;
 axios.defaults.timeout = 5000;
 import cookies from 'js-cookie'
-//console.log(process.client,process.server);
 axios.interceptors.request.use((config) => {
     let token =cookies.get("token");
     if (token) {

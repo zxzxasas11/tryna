@@ -25,7 +25,6 @@
         },
 	    async asyncData({params}){
             let {data} =  await user.getByUserId(params.userId);
-            console.log(data);
             return{
                 userInfo:data
             }

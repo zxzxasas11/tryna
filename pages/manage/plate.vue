@@ -98,7 +98,6 @@
                 
             },
 	        open(node,data){
-                console.log(data._id);
                 this.$router.push("/manage/plate/"+data._id);
 	        }
         }

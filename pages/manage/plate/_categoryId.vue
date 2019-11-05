@@ -70,7 +70,6 @@
         async asyncData ({ params }) {
             if(params.categoryId){
                 let {data} = await category.getOne({id:params.categoryId});
-                console.log(data);
                 return{
                     info:data
                 }
@@ -91,7 +90,6 @@
                     type: 'warning'
                 }).then(() => {
                     category.delAdmin(this.$route.params.categoryId,val._id).then(res=>{
-                        console.log(res);
                         this.$message.success("撤销成功");
                     });
                 }).catch(() => {
@@ -110,7 +108,6 @@
                 };
                 this.userList.forEach((a)=>{
                     if(a.active){
-                        console.log(a.username);
                         data.id = a._id;
                     }
                 });
@@ -122,7 +119,6 @@
 	        //根据code查询用户列表
             searchUser(code){
                 user.getUserList({code:code}).then(res=>{
-                    console.log(res.data.data);
                     this.userList = res.data.data;
                 })
             },

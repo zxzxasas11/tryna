@@ -113,17 +113,15 @@
 		    topOrEssence(type,flag){
                 let data = {};
                 data[type] = flag;
-                console.log(data);
                 this.$confirm(type==='essence'?'确认加精?':'确认置顶?', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(async() => {
                     await post.setTopOrEssence(this.$route.params.id,data).then(res=>{
-                        console.log(res);
+                        this.$message.success("成功");
                     })
                 }).catch((err) => {
-                    console.log(err);
                     this.$message({
                         type: 'info',
                         message: '已取消操作'
