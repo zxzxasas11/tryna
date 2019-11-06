@@ -2,11 +2,10 @@
 	<div class="post-box">
 		<div>
 			<el-input class="title" v-model="post.title"></el-input>
-			<!--<el-select class="plate"></el-select>-->
 		</div>
 		<div>
 			<div id="editor">
-				<no-ssr>
+				<client-only>
 					<mavon-editor
 							style="height: 400px;width: 100%;"
 							ref="md"
@@ -14,7 +13,7 @@
 							@change="updateDoc"
 							:ishljs="true">
 					</mavon-editor>
-				</no-ssr>
+				</client-only>
 				<el-button @click="reply">提交回复</el-button>
 			</div>
 		</div>
@@ -31,6 +30,7 @@
                 }
             }
         },
+	    middleware:"auth",
 	    methods:{
             imgAdd(){
             

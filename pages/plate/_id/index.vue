@@ -24,7 +24,6 @@
 <script>
     import post from "~/api/post";
     import category from "~/api/category";
-
     export default {
         data() {
             return {

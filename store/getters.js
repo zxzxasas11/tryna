@@ -2,7 +2,9 @@ import jwt_decode from 'jwt-decode'
 import cookies from 'js-cookie'
 export default {
     getToken:(state)=> {
-        return state.token;
+        if(process.client){
+            return cookies.get("token");
+        }
     },
     getUserName:state=> {
         if(process.client){

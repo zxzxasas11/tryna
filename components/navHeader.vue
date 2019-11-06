@@ -5,7 +5,7 @@
 			<nuxt-link to="/manage">后台</nuxt-link>
 		</div>
 		<div class="login-box fr">
-			<ul v-if="$store.getters.getT!==null&&$store.getters.getT!==''">
+			<ul v-if="$store.getters.getToken!==null&&$store.getters.getToken!==''&&$store.getters.getToken!==undefined">
 				<li><nuxt-link :to="'/personal/'+$store.getters.getUserId">个人中心</nuxt-link></li>
 				<li>注销{{username}}</li>
 			</ul>
@@ -30,6 +30,7 @@
             }
 	    },
 	    mounted(){
+            console.log(this.$store.getters.getToken);
 	    },
         methods:{
         },

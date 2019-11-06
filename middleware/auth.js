@@ -1,11 +1,16 @@
 import cookies from 'js-cookie'
 const cookieparser = require('cookieparser');
+/**
+ * 前台权限中间件  区分是否需要登录
+ * @param store
+ * @param redirect
+ * @param req
+ * @returns {*}
+ */
 export default function ({ store, redirect,req},) {
-    if(req.headers.cookie){
-        const cookie = cookieparser.parse(req.headers.cookie);
-        if(cookie.token){
-            return store.dispatch("user/setToken",cookie.token);
-        }
+    const token = process.client?cookies.get("token"):cookieparser.parse(req.headers.cookie).token;
+    if(token){
+        return store.dispatch("user/setToken",token);
     }
     else{
         return redirect("/login");
