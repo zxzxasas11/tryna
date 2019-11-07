@@ -27,5 +27,9 @@ export default {
     //添加置顶帖子
     addTopList(topId,postId){
         return fetch.json(`/category/addTopList/${topId}/${postId}`,"POST",{});
+    },
+    //查询用户自己管理的模块
+    getPlateByUserId(){
+        return fetch.json(`/category/getPlate`,"GET",{});
     }
 }
