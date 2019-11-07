@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {Message} from "element-ui";
-//axios.defaults.timeout = 5000000000000;
+import cookies from 'js-cookie'
+import backCode from '../assets/js/code'
 const url = process.env.NODE_ENV === 'development'
     // 测试环境api接口
     ? 'http://192.168.31.226:9357'
@@ -9,7 +10,7 @@ const url = process.env.NODE_ENV === 'development'
 axios.defaults.baseURL = url;
 //axios.defaults.withCredentials=true;
 axios.defaults.timeout = 5000;
-import cookies from 'js-cookie'
+
 axios.interceptors.request.use((config) => {
     let token =cookies.get("token");
     if (token) {
@@ -20,29 +21,34 @@ axios.interceptors.request.use((config) => {
     return Promise.reject(error)
 });
 // 返回状态判断
-/*axios.interceptors.response.use((res) => {
-    if (res.status === 200) {
-        return res
-    } else {
-        return Promise.reject(res);
+axios.interceptors.response.use((res) => {
+    for(let i in backCode){
+        if(res.data.code===i){
+            if (document.getElementsByClassName('el-message').length === 0) {
+                Message.error(backCode[i]);
+            }
+        }
     }
-}, (error) => {
-    switch (error.response.status) {
-        case 500:
-            break;
-        case 400:
-            break;
-        case 401:
-            Message.error("登录信息已过期");
-            cookies.remove("token");
-            //redirect("/login");
-            break;
-        default:
-            console.log(`连接错误${error.response.status}`)
+    return res
+    },
+(error) => {
+    if(process.client){
+        switch (error.response.status) {
+            case 500:
+                break;
+            case 400:
+                break;
+            case 401:
+                Message.error("登录信息已过期");
+                cookies.remove("token");
+                //redirect("/login");
+                break;
+            default:
+                console.log(`连接错误${error.response.status}`)
+        }
+        return Promise.reject(error)
     }
-    return Promise.reject(error)
-
-});*/
+});
 export default {
     json(url,method,data){
         return new Promise((resolve,reject) => {

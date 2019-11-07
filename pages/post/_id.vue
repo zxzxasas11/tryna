@@ -3,7 +3,7 @@
 		<div class="operate-btn">
 			<div>删除</div>
 			<div @click="topOrEssence('essence',1)">加精</div>
-			<div @click="topOrEssence('top',1)">置顶</div>
+			<div @click="setTop()">置顶</div>
 		</div>
 		<div class="line">
 			<div class="left-box">
@@ -26,6 +26,28 @@
 			</div>
 		</div>
 		
+		<el-dialog
+				:close-on-click-modal="false"
+				title="置顶"
+				:visible.sync="dialogVisible">
+			<el-form label-width="80px">
+				<el-form-item style="text-align:left" label="选择板块">
+					<el-select v-model="topId">
+						<el-option
+								v-for="r in categoryList.top"
+								:key="r._id"
+								:value="r._id"
+								:label="r.name"></el-option>
+					</el-select>
+				</el-form-item>
+			
+			</el-form>
+			<div slot="footer" class="dialog-footer">
+				<el-button @click="dialogVisible = false">取 消</el-button>
+				<el-button type="primary" @click="topConfirm">确 定</el-button>
+			</div>
+		</el-dialog>
+		
 		<div>
 			<div id="editor">
 				<no-ssr>
@@ -45,6 +67,7 @@
 
 <script>
 	import post from "../../api/post";
+	import category from "../../api/category";
     import {mavonEditor} from 'mavon-editor'
     import 'mavon-editor/dist/css/index.css'
     export default {
@@ -60,13 +83,17 @@
                     name: 'viewport',
                     content: 'width=device-width, initial-scale=1.0'
                 }]
+                
             }
         },
         components: {mavonEditor},
         data(){
             return{
                 post:{},
-	            content:""
+	            content:"",
+                dialogVisible:false,
+	            topId:"",
+	            categoryList:{}
             }
         },
 	    filters:{
@@ -86,10 +113,16 @@
 	    },
         async asyncData ({ params }) {
             let {data} = await post.getOne(params.id);
+            let c = await category.getOne({id: data.categoryId});
+            console.log(c);
             return{
-                post:data
+                post:data,
+	            categoryList:c.data
             }
         },
+	    mounted(){
+            console.log(this.categoryList);
+	    },
 	    methods:{
             getPost(id){
                post.getOne(id).then(res=>{
@@ -127,7 +160,16 @@
                         message: '已取消操作'
                     });
                 });
-		    }
+		    },
+		    //设置置顶
+            setTop(){
+                this.dialogVisible=true;
+            },
+            topConfirm(){
+                category.addTopList(this.topId,this.$route.params.id).then(res=>{
+                    console.log(res);
+                })
+            }
 	    }
     }
 </script>

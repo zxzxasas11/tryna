@@ -51,6 +51,7 @@
                     },
                     {id:'02',name:"模块管理",url:"",children:[
                             {id:"0201",name:"帖子管理",url:"/manage/post"},
+                            {id:"0202",name:"我的板块",url:"/manage/myPlate"},
                         ]
                     },
                 ]

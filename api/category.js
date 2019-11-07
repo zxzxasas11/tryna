@@ -19,5 +19,13 @@ export default {
     //撤销管理员
     delAdmin(categoryId,userId){
         return fetch.json(`/category/${categoryId}/${userId}`,"DELETE",{});
+    },
+    //添加置顶板块
+    addTop(categoryId){
+        return fetch.json(`/category/addTop/${categoryId}`,"POST",{});
+    },
+    //添加置顶帖子
+    addTopList(topId,postId){
+        return fetch.json(`/category/addTopList/${topId}/${postId}`,"POST",{});
     }
 }

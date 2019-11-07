@@ -30,7 +30,6 @@
             }
 	    },
 	    mounted(){
-            console.log(this.$store.getters.getToken);
 	    },
         methods:{
         },
@@ -50,7 +49,8 @@
 	.nav-line{
 		height:60px;
 		line-height:60px;
-		background-color: #fff0cd;
+		//background-color: #fff0cd;
+		box-shadow: #a1a5ad 0  1px 2px;
 		color:#591804;
 		padding:0 20px;
 		.login-box{
