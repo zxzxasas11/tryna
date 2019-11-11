@@ -7,7 +7,8 @@
 		<div class="login-box fr">
 			<ul v-if="$store.getters.getToken!==null&&$store.getters.getToken!==''&&$store.getters.getToken!==undefined">
 				<li><nuxt-link :to="'/personal/'+$store.getters.getUserId">个人中心</nuxt-link></li>
-				<li>注销{{username}}</li>
+				<li>注销</li>
+				<li>{{username}}</li>
 			</ul>
 			<ul v-else>
 				<li><nuxt-link to="/login">登录/注册</nuxt-link></li>
@@ -59,7 +60,7 @@
 				li{
 					float: left;
 					display: inline-block;
-					width:80px;
+					min-width:80px;
 					height:100%;
 					cursor:pointer;
 				}

@@ -4,10 +4,12 @@
 			<span>{{c.name}}</span>
 			<div class="category-second" v-for="cc in c.children">
 				<span>{{cc.name}}</span>
-				<div class="category-third" v-for="ccc in cc.children">
-					<span>
-						<nuxt-link :to="'/plate/'+ccc._id">{{ccc.name}}</nuxt-link>
-					</span>
+				<div class="category-third" >
+					<ul>
+						<li v-for="ccc in cc.children">
+							<nuxt-link :to="'/plate/'+ccc._id">{{ccc.name}}</nuxt-link>
+						</li>
+					</ul>
 				</div>
 			</div>
 		</div>
@@ -39,17 +41,36 @@
 
 <style scoped lang="less">
 	.box{
-		width:100%;
+		width:95%;
 		margin: 0 auto;
 		column-count: 2;
 		column-gap: 10%;
 		.category-single{
 			break-inside: avoid;
-			width:100%;
+			border:1px solid #ddd;
+			box-sizing: border-box;
+			margin:10px 0;
+			&>span{
+				font-weight: bold;
+				font-size:1.5rem;
+			}
 			.category-second{
 				padding:0 10px;
+				margin:10px 0;
+				&>span{
+					font-size:1.2rem;
+				}
 				.category-third{
 					padding:0 10px;
+					color:#004b9a;
+					ul{
+						display: flex;
+						flex-flow: wrap;
+						li{
+							flex:1;
+							max-width:25%;
+						}
+					}
 				}
 			}
 		}

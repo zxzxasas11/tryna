@@ -21,8 +21,8 @@ export default {
         return fetch.json(`/category/${categoryId}/${userId}`,"DELETE",{});
     },
     //添加置顶板块
-    addTop(categoryId){
-        return fetch.json(`/category/addTop/${categoryId}`,"POST",{});
+    addTop(categoryId,params){
+        return fetch.json(`/category/addTop/${categoryId}`,"POST",params);
     },
     //添加置顶帖子
     addTopList(topId,postId){

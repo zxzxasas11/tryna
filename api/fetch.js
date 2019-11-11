@@ -6,7 +6,7 @@ const url = process.env.NODE_ENV === 'development'
     // 测试环境api接口
     ? 'http://192.168.31.226:9357'
     // 线上环境api接口
-    : 'http://112.51.254.68:7777';
+    : 'http://192.168.31.226:9357';
 axios.defaults.baseURL = url;
 //axios.defaults.withCredentials=true;
 axios.defaults.timeout = 5000;
@@ -21,7 +21,7 @@ axios.interceptors.request.use((config) => {
     return Promise.reject(error)
 });
 // 返回状态判断
-axios.interceptors.response.use((res) => {
+/*axios.interceptors.response.use((res) => {
     for(let i in backCode){
         if(res.data.code===i){
             if (document.getElementsByClassName('el-message').length === 0) {
@@ -30,7 +30,7 @@ axios.interceptors.response.use((res) => {
         }
     }
     return res
-    },
+},
 (error) => {
     if(process.client){
         switch (error.response.status) {
@@ -48,7 +48,7 @@ axios.interceptors.response.use((res) => {
         }
         return Promise.reject(error)
     }
-});
+});*/
 export default {
     json(url,method,data){
         return new Promise((resolve,reject) => {

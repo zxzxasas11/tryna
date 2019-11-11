@@ -32,6 +32,7 @@
                 this.$router.push("/");
             }
         },
+	    middleware:"admin",
         mounted() {
             if (this.$route.path !== '/SysHome') {
                 //this.$store.commit('tags/add_visit', {url: this.$route.path, name: this.$route.name});
