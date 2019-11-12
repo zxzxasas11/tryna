@@ -56,7 +56,9 @@
             handleClick(tab, event) {
             },
             login(data){
+                console.log(data);
                 user.login(data).then(res=>{
+                    console.log(res);
                     this.$store.dispatch("user/setToken",res.data.token);
                     this.$router.replace("/");
                 })

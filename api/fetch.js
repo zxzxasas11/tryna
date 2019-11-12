@@ -16,9 +16,8 @@ axios.defaults.timeout = 5000;
         if (token) {
             config.headers.common['Authorization'] = 'Bearer ' + token;
         }
-        return config
     }
-
+    return config
 }, (error) => {
     return Promise.reject(error)
 });*/

@@ -16,10 +16,10 @@ export default axios.create(options)
 */
 import cookies from "js-cookie";
 import axios from "axios";
-
-
+import backCode from '../assets/js/code'
+import {Message} from "element-ui";
 export default ({ app, $axios, store, route, redirect }) => {
-    $axios.interceptors.request.use((config) => {
+    axios.interceptors.request.use((config) => {
         if(store.getters.getToken){
             config.headers.common['Authorization'] = 'Bearer ' + store.getters.getToken;
         }

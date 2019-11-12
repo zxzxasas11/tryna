@@ -30,9 +30,9 @@ export const mutations = {
 };
 
 export const actions ={
-    nuxtClientInit({ commit}, { req }) {
-        commit('set_token', process.client?cookies.get("token"):req.headers.cookie);
-    },
+    /*nuxtServerInit({ commit}, { req }) {
+        commit('set_token', req.headers.cookie);
+    },*/
     userLogin({commit},params){
         /*userFunction.login(params).then(res=>{
             commit("user_login",res.data.token);

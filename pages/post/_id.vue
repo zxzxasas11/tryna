@@ -98,18 +98,16 @@
                 categoryList: {}
             }
         },
-        async asyncData({params}) {
+        /*async asyncData({params}) {
             let {data} = await post.getOne(params.id);
             let c = await category.getOne({id: data.categoryId});
             console.log(data);
+            console.log(c);
             return {
                 post: data,
                 categoryList: c.data
             }
-        },
-        mounted() {
-            console.log(this.categoryList);
-        },
+        },*/
         methods: {
             getPost(id) {
                 post.getOne(id).then(res => {
