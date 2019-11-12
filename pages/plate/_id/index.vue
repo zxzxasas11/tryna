@@ -25,7 +25,7 @@
 					<nuxt-link :to="'/post/'+p._id">{{p.title}}</nuxt-link>
 				</td>
 				<td>{{p.username}}</td>
-				<td>{{p.create_time}}</td>
+				<td>{{moment(p.create_time).format('YYYY-MM-DD HH:mm:ss')}}</td>
 			</tr>
 		</table>
 	</div>
@@ -34,6 +34,7 @@
 <script>
     import post from "~/api/post";
     import category from "~/api/category";
+    import momont from 'moment';
     export default {
         data() {
             return {

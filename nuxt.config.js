@@ -69,6 +69,9 @@ module.exports = {
             },*/
         },
     },
+    render:{
+        ssr:true
+    },
     /*
     ** Build configuration
     */

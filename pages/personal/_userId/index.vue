@@ -1,4 +1,3 @@
-<!--
 <template>
 	<div>
 		<div class="user-box">
@@ -14,24 +13,24 @@
 		<keep-alive>
 			<nuxt-child/>
 		</keep-alive>
-		
+	
 	</div>
 </template>
 
 <script>
-	import user from "~/api/user";
+    import user from "~/api/user";
     export default {
         data(){
             return{
                 userInfo:{}
             }
         },
-	    async asyncData({params}){
+        async asyncData({params}){
             let {data} =  await user.getByUserId(params.userId);
             return{
                 userInfo:data
             }
-	    }
+        }
     }
 </script>
 
@@ -43,4 +42,3 @@
 		}
 	}
 </style>
--->
