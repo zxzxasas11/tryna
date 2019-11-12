@@ -3,7 +3,7 @@ import cookies from 'js-cookie'
 export default {
     getToken:(state)=> {
         if(process.client){
-            return cookies.get("token");
+            return cookies.get("token")
         }
     },
     getUserName:state=> {

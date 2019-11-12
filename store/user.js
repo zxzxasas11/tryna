@@ -7,7 +7,6 @@ export const state = () => ({
         ifM:false
     },
     loginVisible:false,
-
 });
 
 export const mutations = {
@@ -16,6 +15,8 @@ export const mutations = {
     },
     set_token(state,token){
         state.token = token;
+        console.log("------------++++++++");
+        console.log(token);
         cookies.set('token',token);
     },
     del_token(state){

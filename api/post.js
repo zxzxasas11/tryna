@@ -33,7 +33,12 @@ export default {
     addPost(params){
         return fetch.json("/post/add",'POST',params);
     },
+    /**
+     * zhiding
+     */
     setTopOrEssence(postId,params){
         return fetch.json(`/post/topOrEssence/${postId}`,"PUT",params);
-    }
+    },
+
+
 }

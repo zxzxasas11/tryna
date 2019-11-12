@@ -7,7 +7,9 @@
 		</div>
 		<div class="line">
 			<div class="left-box">
-				<div><nuxt-link :to="'/personal/'+post.creator._id">{{post.creator.username}}</nuxt-link></div>
+				<div>
+					<nuxt-link :to="'/personal/'+post.creator._id">{{post.creator.username}}</nuxt-link>
+				</div>
 				<div>{{common.formatCurrency(post.creator.currency)}}</div>
 			</div>
 			<div class="right-box">
@@ -18,11 +20,14 @@
 		</div>
 		<div class="line" v-for="p in post.comments">
 			<div class="left-box">
-				<div><nuxt-link :to="'/personal/'+p.from._id">{{p.from.username}}</nuxt-link></div>
+				<div>
+					<nuxt-link :to="'/personal/'+p.from._id">{{p.from.username}}</nuxt-link>
+				</div>
 			</div>
 			<div class="right-box">
-				<div v-html="p.content"></div>
+				<div class="comment-text" v-html="p.content"></div>
 				<span class="time">{{p.create_time}}</span>
+				<span v-if="p.from._id!==$store.getters.getUserId">回复</span>
 			</div>
 		</div>
 		
@@ -50,7 +55,7 @@
 		
 		<div>
 			<div id="editor">
-				<no-ssr>
+				<client-only>
 					<mavon-editor
 							style="height: 400px;width: 100%;"
 							ref="md"
@@ -58,7 +63,7 @@
 							@change="updateDoc"
 							:ishljs="true">
 					</mavon-editor>
-				</no-ssr>
+				</client-only>
 				<el-button @click="publish">提交回复</el-button>
 			</div>
 		</div>
@@ -66,92 +71,74 @@
 </template>
 
 <script>
-	import post from "../../api/post";
-	import category from "../../api/category";
-    import {mavonEditor} from 'mavon-editor'
-    import 'mavon-editor/dist/css/index.css'
+    import post from "../../api/post";
+    import category from "../../api/category";
     export default {
-        head(){
+        head() {
             return {
                 title: this.post.title,
                 meta: [{
                     hid: "description",
                     name: "description",
                     content: this.post.content
-                },{
+                }, {
                     hid: 'viewport',
                     name: 'viewport',
                     content: 'width=device-width, initial-scale=1.0'
                 }]
-                
+
             }
         },
-        components: {mavonEditor},
-        data(){
-            return{
-                post:{},
-	            content:"",
-                dialogVisible:false,
-	            topId:"",
-	            categoryList:{}
+        data() {
+            return {
+                post: {},
+                content: "",
+                dialogVisible: false,
+                topId: "",
+                categoryList: {}
             }
         },
-	    filters:{
-            currency(data){
-                let gold=0,silver=0,copper=parseInt(data);
-                if(copper>=100){
-                    silver = parseInt(copper/100);
-                    copper = parseInt(copper%100);
-                    if(silver>=100){
-                        gold = parseInt(silver/100);
-                        gold = parseInt(silver%100);
-                    }
-                }
-                return `${gold}金${silver}银${copper}铜`;
-                
-            }
-	    },
-        async asyncData ({ params }) {
+        async asyncData({params}) {
             let {data} = await post.getOne(params.id);
             let c = await category.getOne({id: data.categoryId});
-            console.log(c);
-            return{
-                post:data,
-	            categoryList:c.data
+            console.log(data);
+            return {
+                post: data,
+                categoryList: c.data
             }
         },
-	    mounted(){
+        mounted() {
             console.log(this.categoryList);
-	    },
-	    methods:{
-            getPost(id){
-               post.getOne(id).then(res=>{
-                   this.post = res.data;
-               })
+        },
+        methods: {
+            getPost(id) {
+                post.getOne(id).then(res => {
+                    this.post = res.data;
+                })
             },
-		    //发布回复
-            publish(){
-                post.addComment({postId:this.$route.params.id,content:this.content}).then(res=>{
+            //发布回复
+            publish() {
+                post.addComment({postId: this.$route.params.id, content: this.content}).then(res => {
                     this.$message.success("回复成功");
                     this.getPost(this.$route.params.id);
                 })
             },
-            imgAdd(){
+            imgAdd() {
 
             },
-            updateDoc(markdown, html){
+            updateDoc(markdown, html) {
                 this.content = html;
             },
-		    //加精置顶
-		    topOrEssence(type,flag){
+            //加精置顶
+            topOrEssence(type, flag) {
                 let data = {};
                 data[type] = flag;
-                this.$confirm(type==='essence'?'确认加精?':'确认置顶?', '提示', {
+                this.$confirm(type === 'essence' ? '确认加精?' : '确认置顶?', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning'
-                }).then(async() => {
-                    await post.setTopOrEssence(this.$route.params.id,data).then(res=>{
+                }).then(async () => {
+                    await post.setTopOrEssence(this.$route.params.id, data).then(res => {
                         this.$message.success("成功");
                     })
                 }).catch((err) => {
@@ -160,47 +147,66 @@
                         message: '已取消操作'
                     });
                 });
-		    },
-		    //设置置顶
-            setTop(){
-                this.dialogVisible=true;
             },
-            topConfirm(){
-                category.addTopList(this.topId,this.$route.params.id).then(res=>{
+            //设置置顶
+            setTop() {
+                this.dialogVisible = true;
+            },
+            topConfirm() {
+                category.addTopList(this.topId, this.$route.params.id).then(res => {
                     console.log(res);
                 })
             }
-	    }
+        }
     }
 </script>
 
 <style scoped lang="less">
-.line{
-	clear: both;
-	display: flex;
-	.left-box{
-		flex:1
-	}
-	.right-box{
-		min-height:100px;
-		flex:4;
-		.post-title{
-			font-weight: bold;
+	.line {
+		clear: both;
+		display: flex;
+		
+		.left-box {
+			flex: 1;
+			border-right: 1px solid #eeeeee;
+			box-sizing: border-box;
+		}
+		
+		.right-box {
+			min-height: 100px;
+			flex: 4;
+			
+			.comment-text{
+				width:80%;
+				float: left
+			}
+			
+			.post-title {
+				font-weight: bold;
+			}
+		}
+		
+		&:nth-child(odd) {
+			background-color: #fffcdd;
+		}
+		
+		&:nth-child(even) {
+			background-color: #a8dabd;
 		}
 	}
-}
 	
-	.time{
-		float:right;
+	.time {
+		float: right;
 	}
 	
-	.operate-btn{
+	.operate-btn {
 		display: flex;
 		float: right;
-		width:120px;
+		width: 120px;
 		clear: both;
-		div{
-			flex:1;
+		
+		div {
+			flex: 1;
 		}
 	}
 </style>

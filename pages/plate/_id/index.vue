@@ -17,7 +17,6 @@
 
 		<nuxt-link :to="{path:`/plate/${$route.params.id}/addPost`}"
 		           class="btn text-right">发布新帖</nuxt-link>
-		<!--<span @click="addTop" class="btn">添加版头</span>-->
 		<table class="post-box">
 			<tr v-for="p in postList">
 				<td>{{p.comments}}</td>
@@ -25,7 +24,7 @@
 					<nuxt-link :to="'/post/'+p._id">{{p.title}}</nuxt-link>
 				</td>
 				<td>{{p.username}}</td>
-				<td>{{moment(p.create_time).format('YYYY-MM-DD HH:mm:ss')}}</td>
+				<td>{{common.formatTime(p.create_time,'YYYY-MM-DD HH:mm:ss')}}</td>
 			</tr>
 		</table>
 	</div>
@@ -34,7 +33,6 @@
 <script>
     import post from "~/api/post";
     import category from "~/api/category";
-    import momont from 'moment';
     export default {
         data() {
             return {

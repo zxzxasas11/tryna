@@ -10,16 +10,18 @@ const url = process.env.NODE_ENV === 'development'
 axios.defaults.baseURL = url;
 //axios.defaults.withCredentials=true;
 axios.defaults.timeout = 5000;
-
-axios.interceptors.request.use((config) => {
-    let token =cookies.get("token");
-    if (token) {
-        config.headers.common['Authorization'] = 'Bearer ' + token;
+/*axios.interceptors.request.use((config) => {
+    if(process.client){
+        let token =cookies.get("token");
+        if (token) {
+            config.headers.common['Authorization'] = 'Bearer ' + token;
+        }
+        return config
     }
-    return config
+
 }, (error) => {
     return Promise.reject(error)
-});
+});*/
 // 返回状态判断
 /*axios.interceptors.response.use((res) => {
     for(let i in backCode){
