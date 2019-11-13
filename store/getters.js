@@ -15,6 +15,16 @@ export default {
             return cookies.get("token")
         }
     },
+    getPower:state=>{
+        if(process.client){
+            if(cookies.get("token")){
+                return jwt_decode(cookies.get("token")).power;
+            }
+            else{
+                return "";
+            }
+        }
+    },
     getUserName:state=> {
         if(process.client){
             if(cookies.get("token")){
@@ -33,7 +43,5 @@ export default {
     visitedViews: state => state.tags.visitedViews,
     activeIndex: state => state.tags.activeIndex,
     getKeepAlive: state => state.tags.keepAlive,
-    getTestIp: state => state.user.testIp,
-    getIfMobile:state=>state.user.user.ifM,
-    getProject:state=>state.project.project
+    getPostInfo:state => state.posts.postInfo
 };

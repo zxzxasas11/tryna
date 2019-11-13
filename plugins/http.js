@@ -18,10 +18,19 @@ import cookies from "js-cookie";
 import axios from "axios";
 import backCode from '../assets/js/code'
 import {Message} from "element-ui";
-export default ({ app, $axios, store, route, redirect }) => {
+const cookieparser = require('cookieparser');
+export default ({ app, $axios, store, route, redirect,req }) => {
     axios.interceptors.request.use((config) => {
-        if(store.getters.getT){
-            config.headers.common['Authorization'] = 'Bearer ' + store.getters.getT;
+        if(process.client){
+            if(store.getters.getT){
+                config.headers.common['Authorization'] = 'Bearer ' + store.getters.getT;
+            }
+        }
+        else{
+            if(req.headers.cookie){
+                config.headers.common['Authorization'] = 'Bearer ' + cookieparser.parse(req.headers.cookie).token;
+            }
+
         }
         return config
     }, (error) => {

@@ -4,7 +4,12 @@
 
 <script>
     export default {
-        name: "collect"
+        data(){
+            return{
+            
+            }
+        },
+	    
     }
 </script>
 

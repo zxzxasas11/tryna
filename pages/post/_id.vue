@@ -1,11 +1,12 @@
 <template>
 	<div>
-		<div class="operate-btn">
+		<div class="operate-btn" v-if="$store.getters.getPower">
 			<div>删除</div>
-			<div @click="topOrEssence('essence',1)">加精</div>
-			<div @click="setTop()">置顶</div>
+			<div @click="topOrEssence('essence',1)">{{$store.getters.getPostInfo.essence|essenceFilter}}</div>
+			<div @click="setTop()">{{$store.getters.getPostInfo.top|topFilter}}</div>
 		</div>
 		<div @click="openReply(null)">发表回复</div>
+		<div @click="collectPost">{{$store.getters.getPostInfo.collect|collectFilter}}</div>
 		<div class="line">
 			<div class="left-box">
 				<div>
@@ -77,6 +78,7 @@
 <script>
     import post from "../../api/post";
     import category from "../../api/category";
+    import collect from "../../api/collect";
     import jwt_decode from 'jwt-decode'
     export default {
         head() {
@@ -103,13 +105,29 @@
                 topId: "",
                 categoryList: {},
 	            user:{},
-	            replyVisible:false
+	            replyVisible:false,
+	            ifAdmin:false
             }
         },
-        async asyncData({params}) {
+	    filters:{
+            collectFilter(data){
+                return data===0?'收藏':'取消收藏'
+            },
+            topFilter(data){
+                return data===0?'置顶':'取消置顶'
+            },
+            essenceFilter(data){
+                return data===0?'加精':'取消加精'
+            }
+	    },
+        async fetch({ store, params }) {
+            const { data } = await collect.check(params.id);
+            store.dispatch('posts/setPost', {collect:data?1:0})
+        },
+        async asyncData({params,store}) {
             let {data} = await post.getOne(params.id);
             let c = await category.getOne({id: data.categoryId});
-            console.log(data);
+            store.dispatch('posts/setPost', {top:data.top,essence:data.essence});
             return {
                 post: data,
                 categoryList: c.data
@@ -178,6 +196,13 @@
             edit(json){
                 console.log(json);
                 this.$refs.md.value=json.content
+            },
+	        //收藏
+            collectPost(){
+                collect.add(this.$route.params.id).then(res=>{
+                    this.$message.success("收藏成功");
+                    this.$store.dispatch("posts/setPost",{collect:1})
+                })
             }
         }
     }
