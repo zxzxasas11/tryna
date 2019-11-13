@@ -12,7 +12,9 @@ export default {
     },
     getT:(state)=> {
         if(process.client){
-            return cookies.get("token")
+            if(cookies.get("token")) {
+                return cookies.get("token")
+            }
         }
     },
     getPower:state=>{
@@ -37,7 +39,12 @@ export default {
     },
     getUserId:state=>{
         if(process.client){
-            return jwt_decode(cookies.get("token")).userId;
+            if(cookies.get("token")){
+                return jwt_decode(cookies.get("token")).userId;
+            }
+            else{
+                return "";
+            }
         }
     },
     visitedViews: state => state.tags.visitedViews,

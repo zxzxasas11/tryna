@@ -1,6 +1,6 @@
 <template>
-	<div class="history-box">
-		<div class="history-single" v-for="h in historyList.data">
+	<div class="list-box">
+		<div class="list-single" v-for="h in historyList.data">
 			<div><nuxt-link :to="'/post/'+h.postId._id">{{h.postId.title}}</nuxt-link></div>
 			<div>
 				<span>浏览时间:{{h.create_time}}</span>
@@ -28,14 +28,5 @@
 </script>
 
 <style scoped lang="less">
-	.history-box{
-		width:80%;
-		margin: 0 auto;
-		.history-single{
-			width:100%;
-			margin:10px 0;
-			border: 1px solid #eeeeee;
-			box-sizing: border-box;
-		}
-	}
+	@import "../../../assets/css/personalList";
 </style>

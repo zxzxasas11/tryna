@@ -121,8 +121,11 @@
             }
 	    },
         async fetch({ store, params }) {
-            const { data } = await collect.check(params.id);
-            store.dispatch('posts/setPost', {collect:data?1:0})
+            if(store.getters.getT){
+                const { data } = await collect.check(params.id);
+                store.dispatch('posts/setPost', {collect:data?1:0})
+            }
+            
         },
         async asyncData({params,store}) {
             let {data} = await post.getOne(params.id);

@@ -6,5 +6,8 @@ export default {
     },
     check(postId){
         return fetch.json(`/collect/check/${postId}`,"GET",{});
+    },
+    getList(params){
+        return fetch.json("/collect/getAll","GET",params);
     }
 }

@@ -17,7 +17,10 @@ export const mutations = {
         state.token = token;
         console.log("------------++++++++");
         console.log(token);
-        cookies.set('token',token);
+        if(token!==undefined){
+            cookies.set('token',token);
+        }
+
     },
     del_token(state){
         state.token = '';
