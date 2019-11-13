@@ -20,8 +20,8 @@ import backCode from '../assets/js/code'
 import {Message} from "element-ui";
 export default ({ app, $axios, store, route, redirect }) => {
     axios.interceptors.request.use((config) => {
-        if(store.getters.getToken){
-            config.headers.common['Authorization'] = 'Bearer ' + store.getters.getToken;
+        if(store.getters.getT){
+            config.headers.common['Authorization'] = 'Bearer ' + store.getters.getT;
         }
         return config
     }, (error) => {

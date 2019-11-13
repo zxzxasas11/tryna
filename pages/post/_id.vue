@@ -5,6 +5,7 @@
 			<div @click="topOrEssence('essence',1)">加精</div>
 			<div @click="setTop()">置顶</div>
 		</div>
+		<div @click="openReply(null)">发表回复</div>
 		<div class="line">
 			<div class="left-box">
 				<div>
@@ -15,6 +16,7 @@
 			<div class="right-box">
 				<div class="post-title">{{post.title}}</div>
 				<span class="time">{{post.create_time}}</span>
+				<span @click="edit(post)">修改帖子</span>
 				<div v-html="post.content"></div>
 			</div>
 		</div>
@@ -25,9 +27,10 @@
 				</div>
 			</div>
 			<div class="right-box">
-				<div class="comment-text" v-html="p.content"></div>
+				<div v-if="p.to" style="color:red" v-html="common.markdownToHtml(p.to.content)"></div>
+				<div class="comment-text" v-html="common.markdownToHtml(p.content)"></div>
 				<span class="time">{{p.create_time}}</span>
-				<span v-if="p.from._id!==$store.getters.getUserId">回复</span>
+				<span @click="openReply(p)" v-if="p.from._id!==$store.getters.getUserId">回复</span>
 			</div>
 		</div>
 		
@@ -53,11 +56,12 @@
 			</div>
 		</el-dialog>
 		
-		<div>
+		<div v-if="replyVisible">
 			<div id="editor">
 				<client-only>
 					<mavon-editor
 							style="height: 400px;width: 100%;"
+							v-model="content"
 							ref="md"
 							@imgAdd="imgAdd"
 							@change="updateDoc"
@@ -73,6 +77,7 @@
 <script>
     import post from "../../api/post";
     import category from "../../api/category";
+    import jwt_decode from 'jwt-decode'
     export default {
         head() {
             return {
@@ -92,23 +97,37 @@
         data() {
             return {
                 post: {},
+	            to:"",
                 content: "",
                 dialogVisible: false,
                 topId: "",
-                categoryList: {}
+                categoryList: {},
+	            user:{},
+	            replyVisible:false
             }
         },
-        /*async asyncData({params}) {
+        async asyncData({params}) {
             let {data} = await post.getOne(params.id);
             let c = await category.getOne({id: data.categoryId});
             console.log(data);
-            console.log(c);
             return {
                 post: data,
                 categoryList: c.data
             }
-        },*/
+        },
         methods: {
+            //显示回复框
+            openReply(from){
+                //回复某人
+                if(from!==null){
+                    console.log(from);
+                    this.to = from._id;
+                }
+                else{
+                    this.to =undefined;
+                }
+                this.replyVisible=true;
+            },
             getPost(id) {
                 post.getOne(id).then(res => {
                     this.post = res.data;
@@ -116,7 +135,7 @@
             },
             //发布回复
             publish() {
-                post.addComment({postId: this.$route.params.id, content: this.content}).then(res => {
+                post.addComment({postId: this.$route.params.id, content: this.content,to:this.to}).then(res => {
                     this.$message.success("回复成功");
                     this.getPost(this.$route.params.id);
                 })
@@ -124,9 +143,9 @@
             imgAdd() {
 
             },
-            updateDoc(markdown, html) {
+            /*updateDoc(markdown, html) {
                 this.content = html;
-            },
+            },*/
             //加精置顶
             topOrEssence(type, flag) {
                 let data = {};
@@ -154,6 +173,11 @@
                 category.addTopList(this.topId, this.$route.params.id).then(res => {
                     console.log(res);
                 })
+            },
+	        //对帖子进行修改
+            edit(json){
+                console.log(json);
+                this.$refs.md.value=json.content
             }
         }
     }

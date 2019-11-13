@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import moment from 'moment';
+import marked from 'marked';
 const common = {
     formatCurrency(data){
             let gold=0,silver=0,copper=parseInt(data);
@@ -15,6 +16,9 @@ const common = {
     },
     formatTime(data,reg){
         return moment(data).format(reg);
+    },
+    markdownToHtml(markdown){
+        return marked(markdown);
     }
 };
 

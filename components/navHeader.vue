@@ -1,13 +1,13 @@
 <template>
 	<div class="nav-line">
 		<div class="fl head">
-			<nuxt-link to="/">首页</nuxt-link>
+			<nuxt-link to="/">Tryna</nuxt-link>
 			<nuxt-link to="/manage">后台</nuxt-link>
 		</div>
 		<div class="login-box fr">
-			<ul v-if="$store.getters.getToken!==null&&$store.getters.getToken!==''&&$store.getters.getToken!==undefined">
-				<li><nuxt-link :to="'/personal/'+$store.getters.getUserId">个人中心</nuxt-link></li>
-				<li>注销</li>
+			<ul v-if="$store.getters.getT!==null&&$store.getters.getT!==''&&$store.getters.getT!==undefined">
+				<li><nuxt-link :to="'/personal/'+$store.getters.getToken.userId">个人中心</nuxt-link></li>
+				<li @click="logout">注销</li>
 				<li>{{username}}</li>
 			</ul>
 			<ul v-else>
@@ -23,17 +23,19 @@
             return{
             }
         },
-        created() {
-        },
 	    computed:{
             username(){
-                return this.$store.getters.getUserName
+                return this.$store.getters.getToken.username
             }
 	    },
-	    mounted(){
+	    methods:{
+            logout(){
+                this.$store.dispatch("user/delToken");
+                this.$router.push("/")
+            }
 	    },
-        methods:{
-        },
+	    watch:{
+	    }
     }
 </script>
 

@@ -21,7 +21,7 @@ export const mutations = {
     },
     del_token(state){
         state.token = '';
-        localStorage.removeItem("token");
+        cookies.remove("token");
     },
     user_login(state,token){
         state.token = token;
@@ -30,9 +30,9 @@ export const mutations = {
 };
 
 export const actions ={
-    /*nuxtServerInit({ commit}, { req }) {
-        commit('set_token', req.headers.cookie);
-    },*/
+    nuxtServerInit({ commit}, { req }) {
+        commit('set_token', process.client?cookies.get("token"):req.headers.cookie);
+    },
     userLogin({commit},params){
         /*userFunction.login(params).then(res=>{
             commit("user_login",res.data.token);
@@ -44,6 +44,9 @@ export const actions ={
     },
     setToken({commit},value){
         commit("set_token",value);
+    },
+    delToken({commit},value){
+        commit("del_token",value);
     },
     setLoginVisible({commit},value){
         commit("set_loginVisible",value);

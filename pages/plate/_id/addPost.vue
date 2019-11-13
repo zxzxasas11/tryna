@@ -9,8 +9,8 @@
 					<mavon-editor
 							style="height: 400px;width: 100%;"
 							ref="md"
+							v-model="post.content"
 							@imgAdd="imgAdd"
-							@change="updateDoc"
 							:ishljs="true">
 					</mavon-editor>
 				</client-only>
@@ -35,9 +35,9 @@
             imgAdd(){
             
             },
-            updateDoc(markdown, html){
+            /*updateDoc(markdown, html){
                 this.post.content = html;
-            },
+            },*/
             reply(){
                 post.addPost(this.post).then(res=>{
                     this.$message.success('发布成功');

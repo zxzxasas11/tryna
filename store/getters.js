@@ -3,12 +3,26 @@ import cookies from 'js-cookie'
 export default {
     getToken:(state)=> {
         if(process.client){
+            if(cookies.get("token")){
+                return jwt_decode(cookies.get("token"))
+            }else {
+                return undefined
+            }
+        }
+    },
+    getT:(state)=> {
+        if(process.client){
             return cookies.get("token")
         }
     },
     getUserName:state=> {
         if(process.client){
-            return jwt_decode(cookies.get("token")).username;
+            if(cookies.get("token")){
+                return jwt_decode(cookies.get("token")).username;
+            }
+            else{
+                return "";
+            }
         }
     },
     getUserId:state=>{

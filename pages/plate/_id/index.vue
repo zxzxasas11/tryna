@@ -18,14 +18,16 @@
 		<nuxt-link :to="{path:`/plate/${$route.params.id}/addPost`}"
 		           class="btn text-right">发布新帖</nuxt-link>
 		<table class="post-box">
-			<tr v-for="p in postList">
-				<td>{{p.comments}}</td>
-				<td :class="p.essence===1?'top-class':''">
-					<nuxt-link :to="'/post/'+p._id">{{p.title}}</nuxt-link>
-				</td>
-				<td>{{p.username}}</td>
-				<td>{{common.formatTime(p.create_time,'YYYY-MM-DD HH:mm:ss')}}</td>
-			</tr>
+			<tbody>
+				<tr v-for="p in postList">
+					<td>{{p.comments}}</td>
+					<td :class="p.essence===1?'top-class':''">
+						<nuxt-link :to="'/post/'+p._id">{{p.title}}</nuxt-link>
+					</td>
+					<td>{{p.username}}</td>
+					<td>{{common.formatTime(p.create_time,'YYYY-MM-DD HH:mm:ss')}}</td>
+				</tr>
+			</tbody>
 		</table>
 	</div>
 </template>
