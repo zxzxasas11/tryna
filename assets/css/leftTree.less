@@ -1,0 +1,32 @@
+@width:200px;
+@lineHeight:40px;
+.main {
+    display: flex;
+    height:100%;
+    .left {
+        width: @width;
+        ul{
+            width: 100%;
+            li{
+                margin:10px 0;
+                height:@lineHeight;
+                line-height: @lineHeight;
+                &:hover{
+                    background-color: #eeeeee;
+                }
+                a{
+                    display: inline-block;
+                    width: 100%;
+                }
+            }
+        }
+    }
+    .right {
+        width: calc(100% - 200px)
+    }
+
+    .sign{
+        margin-left:20px;
+        color: #eebe6b;
+    }
+}

@@ -18,6 +18,17 @@
                 message:{}
             }
         },
+        async fetch({ store, params }) {
+            await message.clear({system_message_number:0}).then(async res=>{
+                console.log(res);
+                store.dispatch("user/setMessage",{system:0});
+            })
+	        
+            /*if(store.getters.getT){
+                const { data } = await collect.check(params.id);
+                store.dispatch('posts/setPost', {collect:data?1:0})
+            }*/
+        },
         async asyncData({params}) {
             let {data} = await message.getAll({type:0});
             console.log(data);

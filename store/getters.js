@@ -6,7 +6,7 @@ export default {
             if(cookies.get("token")){
                 return jwt_decode(cookies.get("token"))
             }else {
-                return undefined
+                return {username:"",userId:""}
             }
         }
     },
@@ -50,5 +50,6 @@ export default {
     visitedViews: state => state.tags.visitedViews,
     activeIndex: state => state.tags.activeIndex,
     getKeepAlive: state => state.tags.keepAlive,
-    getPostInfo:state => state.posts.postInfo
+    getPostInfo:state => state.posts.postInfo,
+    getMessage:state =>state.user.message
 };

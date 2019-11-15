@@ -2,7 +2,7 @@
 	<div style="height:100%;">
 		<div class="title">
 			<span>后台管理</span>
-			<nuxt-link to="/Home">返回主页</nuxt-link>
+			<nuxt-link to="/">返回主页</nuxt-link>
 		</div>
 		<div class="window">
 			<div class="nav">
@@ -11,9 +11,6 @@
 			<div class="manage">
 				<Tags></Tags>
 				<nuxt-child/>
-				<!--<keep-alive :include="includedComponents">
-					<nuxt-child/>
-				</keep-alive>-->
 			</div>
 		</div>
 	</div>

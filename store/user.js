@@ -22,7 +22,6 @@ export const mutations = {
         if(token!==undefined){
             cookies.set('token',token);
         }
-
     },
     del_token(state){
         state.token = '';
@@ -31,6 +30,11 @@ export const mutations = {
     user_login(state,token){
         state.token = token;
         localStorage.setItem("token",token);
+    },
+    set_message(state,value){
+        for(let i in value){
+            state.message[i]=value[i];
+        }
     }
 };
 
@@ -49,5 +53,8 @@ export const actions ={
     },
     setLoginVisible({commit},value){
         commit("set_loginVisible",value);
+    },
+    setMessage({commit},value){
+        commit("set_message",value);
     }
 };
