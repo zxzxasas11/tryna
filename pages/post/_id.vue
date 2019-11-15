@@ -49,7 +49,6 @@
 								:label="r.name"></el-option>
 					</el-select>
 				</el-form-item>
-			
 			</el-form>
 			<div slot="footer" class="dialog-footer">
 				<el-button @click="dialogVisible = false">取 消</el-button>
@@ -57,6 +56,13 @@
 			</div>
 		</el-dialog>
 		
+		<el-pagination
+				:page-size="20"
+				:pager-count="11"
+				@current-change="changePage"
+				layout="prev, pager, next"
+				:total="post.size">
+		</el-pagination>
 		<div v-if="replyVisible">
 			<div id="editor">
 				<client-only>
@@ -65,7 +71,6 @@
 							v-model="content"
 							ref="md"
 							@imgAdd="imgAdd"
-							@change="updateDoc"
 							:ishljs="true">
 					</mavon-editor>
 				</client-only>
@@ -98,6 +103,9 @@
         },
         data() {
             return {
+                page:{
+                    currentPage:1
+                },
                 post: {},
 	            to:"",
                 content: "",
@@ -149,8 +157,8 @@
                 }
                 this.replyVisible=true;
             },
-            getPost(id) {
-                post.getOne(id).then(res => {
+            getPost(id,page) {
+                post.getOne(id,page).then(res => {
                     this.post = res.data;
                 })
             },
@@ -158,7 +166,7 @@
             publish() {
                 post.addComment({postId: this.$route.params.id, content: this.content,to:this.to}).then(res => {
                     this.$message.success("回复成功");
-                    this.getPost(this.$route.params.id);
+                    this.getPost(this.$route.params.id,{currentPage:1});
                 })
             },
             imgAdd() {
@@ -206,6 +214,11 @@
                     this.$message.success("收藏成功");
                     this.$store.dispatch("posts/setPost",{collect:1})
                 })
+            },
+            changePage(val){
+                this.page.currentPage=val;
+                this.getPost(this.$route.params.id,this.page);
+                window.scrollTo(0,0);
             }
         }
     }

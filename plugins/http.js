@@ -30,7 +30,6 @@ export default ({ app, $axios, store, route, redirect,req }) => {
             if(req.headers.cookie){
                 config.headers.common['Authorization'] = 'Bearer ' + cookieparser.parse(req.headers.cookie).token;
             }
-
         }
         return config
     }, (error) => {

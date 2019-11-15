@@ -12,10 +12,11 @@ export default {
     /**
      * 根据id查询详情
      * @param id
+     * @param params
      * @returns {*|Promise|Promise<unknown>}
      */
-    getOne(id){
-        return fetch.json("/post/"+id,"GET",{});
+    getOne(id,params){
+        return fetch.json("/post/"+id,"GET",params);
     },
     /**
      * 添加评论

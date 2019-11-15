@@ -87,3 +87,8 @@ a {
 }
 
 #__layout,#__nuxt{height:100%}
+
+
+.full-width{
+    width: 100% !important;
+}

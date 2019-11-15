@@ -7,6 +7,7 @@
 		<div class="login-box fr">
 			<ul v-if="$store.getters.getT!==null&&$store.getters.getT!==''&&$store.getters.getT!==undefined">
 				<li><nuxt-link :to="'/personal/'+$store.getters.getToken.userId">个人中心</nuxt-link></li>
+				<li><nuxt-link to="/message">消息{{message.system}}</nuxt-link></li>
 				<li @click="logout">注销</li>
 				<li>{{username}}</li>
 			</ul>
@@ -18,15 +19,25 @@
 </template>
 
 <script>
+	import user from "../api/user";
     export default {
         data(){
             return{
+                message:{
+                    system:null
+                }
             }
         },
 	    computed:{
             username(){
                 return this.$store.getters.getToken.username
             }
+	    },
+	    mounted(){
+            user.getByUserId(this.$store.getters.getToken.userId).then(res=>{
+                this.message.system=res.data.system_message_number;
+                console.log(this.message);
+            })
 	    },
 	    methods:{
             logout(){

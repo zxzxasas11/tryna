@@ -6,6 +6,10 @@ export const state = () => ({
     user:{
         ifM:false
     },
+    message:{
+        system:0,
+        private:0
+    },
     loginVisible:false,
 });
 
@@ -15,8 +19,6 @@ export const mutations = {
     },
     set_token(state,token){
         state.token = token;
-        console.log("------------++++++++");
-        console.log(token);
         if(token!==undefined){
             cookies.set('token',token);
         }
@@ -35,12 +37,6 @@ export const mutations = {
 export const actions ={
     nuxtServerInit({ commit}, { req }) {
         commit('set_token', process.client?cookies.get("token"):req.headers.cookie);
-    },
-    userLogin({commit},params){
-        /*userFunction.login(params).then(res=>{
-            commit("user_login",res.data.token);
-
-        });*/
     },
     setIfM({commit},params){
         commit("set_ifMobile",params);

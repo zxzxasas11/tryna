@@ -9,7 +9,8 @@
 			<li><nuxt-link :to="'/personal/'+$route.params.userId+'/mine'">我的发帖</nuxt-link></li>
 			<li><nuxt-link :to="'/personal/'+$route.params.userId+'/collect'">收藏</nuxt-link></li>
 			<li><nuxt-link :to="'/personal/'+$route.params.userId+'/history'">历史</nuxt-link></li>
-			<li>关注</li>
+			<li><nuxt-link :to="'/personal/'+$route.params.userId+'/care'">关注</nuxt-link></li>
+			<li><nuxt-link :to="'/personal/'+$route.params.userId+'/cared'">关注我的</nuxt-link></li>
 		</ul>
 		<keep-alive>
 			<nuxt-child/>
