@@ -16,5 +16,9 @@ export default {
     },
     add(params){
         return fetch.json("/message/add","POST",params);
+    },
+    //修改私信状态
+    editPrivateMessage(userId){
+        return fetch.json(`/message/editPrivateMessage/${userId}`,"PUT",{});
     }
 }

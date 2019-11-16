@@ -1,7 +1,7 @@
 <template>
 	<div class="nav-line">
 		<div class="fl head">
-			<nuxt-link to="/">Tryna</nuxt-link>
+			<nuxt-link to="/">首页</nuxt-link>
 			<nuxt-link to="/manage">后台</nuxt-link>
 		</div>
 		<div class="login-box fr">
@@ -37,7 +37,8 @@
             user.getByUserId(this.$store.getters.getToken.userId).then(res=>{
                 this.message.system=res.data.system_message_number;
                 this.$store.dispatch("user/setMessage",this.message);
-            })
+                console.log(this.message);
+            });
 	    },
 	    methods:{
             logout(){

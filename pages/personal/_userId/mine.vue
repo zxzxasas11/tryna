@@ -1,41 +1,34 @@
 <template>
-	<div class="history-box">
-		<div class="history-single" v-for="h in historyList.data">
-			<div><nuxt-link :to="'/post/'+h.postId._id">{{h.postId.title}}</nuxt-link></div>
+	<div class="list-box">
+		<div class="list-single" v-for="p in postList.data">
+			<div class="title"><nuxt-link :to="'/post/'+p._id">{{p.title}}</nuxt-link></div>
 			<div>
-				<span>浏览时间:{{h.create_time}}</span>
-				<span>所属分类:{{h.postId.categoryId.name}}</span>
+				<span>浏览时间:{{p.create_time}}</span>
+				<span>所属分类:{{p.category}}</span>
+				<span>回复数:{{p.comments}}</span>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-	import history from "../../../api/history";
+	import post from "../../../api/post";
     export default {
         data(){
             return{
-                historyList:[]
+                postList:{}
             }
         },
         async asyncData({params}){
-            //let {data} =  await history.getAll({});
+            let {data} =  await post.getList({creator:params.userId});
+            console.log(data);
             return{
-                //historyList:data
+                postList:data
             }
         }
     }
 </script>
 
 <style scoped lang="less">
-	.history-box{
-		width:80%;
-		margin: 0 auto;
-		.history-single{
-			width:100%;
-			margin:10px 0;
-			border: 1px solid #eeeeee;
-			box-sizing: border-box;
-		}
-	}
+	@import "../../../assets/css/personalList";
 </style>

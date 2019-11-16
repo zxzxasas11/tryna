@@ -1,9 +1,10 @@
 <template>
 	<div>
-		<span>收藏列表</span>
 		<div class="list-box">
 			<div class="list-single" v-for="h in collectList.data">
-				<div><nuxt-link :to="'/post/'+h.postId._id">{{h.postId.title}}</nuxt-link></div>
+				<div class="title">
+					<nuxt-link :to="'/post/'+h.postId._id">{{h.postId.title}}</nuxt-link>
+				</div>
 				<div>
 					<span>浏览时间:{{h.create_time}}</span>
 					<span>所属分类:{{h.postId.categoryId.name}}</span>
