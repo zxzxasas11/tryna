@@ -59,7 +59,7 @@
                 console.log(data);
                 user.login(data).then(res=>{
                     this.$store.dispatch("user/setToken",res.data.token);
-                    console.log(this.$store.getters.getToken)
+                    console.log(this.$store.getters.getToken);
                     this.$router.replace("/");
                 })
             },

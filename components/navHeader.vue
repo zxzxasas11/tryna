@@ -8,7 +8,7 @@
 			<ul v-if="$store.getters.getT!==null&&$store.getters.getT!==''&&$store.getters.getT!==undefined">
 				<li><nuxt-link :to="'/personal/'+$store.getters.getToken.userId">个人中心</nuxt-link></li>
 				<li><nuxt-link to="/message">消息{{$store.getters.getMessage.system+$store.getters.getMessage.private}}</nuxt-link></li>
-				<li>动态:{{$store.getters.getMessage.dynamic}}</li>
+				<li><nuxt-link to="/dynamic">动态:{{$store.getters.getMessage.dynamic}}</nuxt-link></li>
 				<li @click="logout">注销</li>
 				<li>{{username}}</li>
 			</ul>
