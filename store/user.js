@@ -8,8 +8,10 @@ export const state = () => ({
     },
     message:{
         system:0,
-        private:0
+        private:0,
+        dynamic:0
     },
+    dynamic:0,
     loginVisible:false,
 });
 
@@ -19,6 +21,7 @@ export const mutations = {
     },
     set_token(state,token){
         state.token = token;
+        console.log("store------->"+token);
         if(token!==undefined){
             cookies.set('token',token);
         }

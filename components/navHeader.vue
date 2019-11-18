@@ -7,7 +7,8 @@
 		<div class="login-box fr">
 			<ul v-if="$store.getters.getT!==null&&$store.getters.getT!==''&&$store.getters.getT!==undefined">
 				<li><nuxt-link :to="'/personal/'+$store.getters.getToken.userId">个人中心</nuxt-link></li>
-				<li><nuxt-link to="/message">消息{{$store.getters.getMessage.system}}</nuxt-link></li>
+				<li><nuxt-link to="/message">消息{{$store.getters.getMessage.system+$store.getters.getMessage.private}}</nuxt-link></li>
+				<li>动态:{{$store.getters.getMessage.dynamic}}</li>
 				<li @click="logout">注销</li>
 				<li>{{username}}</li>
 			</ul>
@@ -24,7 +25,9 @@
         data(){
             return{
                 message:{
-                    system:null
+                    system:null,
+	                private:null,
+                    dynamic:null
                 }
             }
         },
@@ -34,11 +37,15 @@
             }
 	    },
 	    mounted(){
-            user.getByUserId(this.$store.getters.getToken.userId).then(res=>{
-                this.message.system=res.data.system_message_number;
-                this.$store.dispatch("user/setMessage",this.message);
-                console.log(this.message);
-            });
+            if(this.$store.getters.getToken.userId){
+                user.getByUserId(this.$store.getters.getToken.userId).then(res=>{
+                    this.message.system=res.data.system_message_number;
+                    this.message.private=res.data.private_message_number;
+                    this.message.dynamic = res.data.dynamic_message_number;
+                    this.$store.dispatch("user/setMessage",this.message);
+                    console.log(this.message);
+                });
+            }
 	    },
 	    methods:{
             logout(){
