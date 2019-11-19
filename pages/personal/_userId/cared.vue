@@ -3,12 +3,9 @@
 		<div>关注我的总数:{{careList.count}}</div>
 		<div class="list-box">
 			<div class="list-single" v-for="c in careList.data">
-				{{c.creator}}
-				<!--<div><nuxt-link :to="'/post/'+h.postId._id">{{h.postId.title}}</nuxt-link></div>
 				<div>
-					<span>浏览时间:{{h.create_time}}</span>
-					<span>所属分类:{{h.postId.categoryId.name}}</span>
-				</div>-->
+					<nuxt-link :to="'/personal/'+c.creator._id">{{c.creator.username}}</nuxt-link>
+				</div>
 			</div>
 		</div>
 	</div>
