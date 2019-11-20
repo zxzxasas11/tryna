@@ -45,7 +45,6 @@
         },
         async asyncData ({ params }) {
             let {data} = await category.getPlateByUserId();
-            console.log(data);
             return{
                 menu:data,
             }
@@ -57,7 +56,6 @@
             },
             topConfirm(){
                 category.addTop(this.categoryId,this.top).then(res=>{
-                    console.log(res);
                     this.$message.success("添加成功");
                     this.dialogVisible = false;
                 })

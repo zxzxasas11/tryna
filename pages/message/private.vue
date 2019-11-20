@@ -26,7 +26,6 @@
         },
         async asyncData({params,store}) {
             let {data} = await message.getPrivate({});
-            console.log(data);
             return {
                 userList: data
             }

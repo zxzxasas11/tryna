@@ -21,7 +21,6 @@ export const mutations = {
     },
     set_token(state,token){
         state.token = token;
-        console.log("store------->"+token);
         if(token!==undefined){
             cookies.set('token',token);
         }

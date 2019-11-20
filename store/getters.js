@@ -3,7 +3,6 @@ import cookies from 'js-cookie'
 export default {
     getToken:(state)=> {
         if(process.client){
-            console.log(cookies.get("token"));
             if(state.user.token){
                 return jwt_decode(state.user.token)
             }

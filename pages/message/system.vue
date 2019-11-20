@@ -25,7 +25,6 @@
         },
         async asyncData({params}) {
             let {data} = await message.getAll({type:0});
-            console.log(data);
             return {
                 message: data
             }

@@ -21,7 +21,6 @@
         },
         async asyncData({params}){
             let {data} =  await post.getList({creator:params.userId});
-            console.log(data);
             return{
                 postList:data
             }

@@ -25,7 +25,6 @@
         },
         async asyncData({params}){
             let {data} =  await message.getDynamicList();
-            console.log(data);
             return{
                 dynamicList:data
             }

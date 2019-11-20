@@ -84,7 +84,6 @@
     import post from "../../api/post";
     import category from "../../api/category";
     import collect from "../../api/collect";
-    import jwt_decode from 'jwt-decode'
     export default {
         head() {
             return {
@@ -119,13 +118,13 @@
         },
 	    filters:{
             collectFilter(data){
-                return data===0?'收藏':'取消收藏'
+                return data===0?'收藏':'取消收藏';
             },
             topFilter(data){
-                return data===0?'置顶':'取消置顶'
+                return data===0?'置顶':'取消置顶';
             },
             essenceFilter(data){
-                return data===0?'加精':'取消加精'
+                return data===0?'加精':'取消加精';
             }
 	    },
         async fetch({ store, params }) {
@@ -149,7 +148,6 @@
             openReply(from){
                 //回复某人
                 if(from!==null){
-                    console.log(from);
                     this.to = from._id;
                 }
                 else{
@@ -200,12 +198,11 @@
             },
             topConfirm() {
                 category.addTopList(this.topId, this.$route.params.id).then(res => {
-                    console.log(res);
+                    this.$message.success("置顶成功");
                 })
             },
 	        //对帖子进行修改
             edit(json){
-                console.log(json);
                 this.$refs.md.value=json.content
             },
 	        //收藏

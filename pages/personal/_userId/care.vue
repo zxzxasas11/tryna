@@ -26,7 +26,6 @@
         },
         async asyncData({params}) {
             let {data} = await care.getAll({type:"1"});
-            console.log(data);
             return {
                 careList: data
             }

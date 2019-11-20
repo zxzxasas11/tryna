@@ -56,7 +56,6 @@
         },
         async asyncData({params}) {
             let {data} = await log.getCount({});
-            console.log(data);
             return {
                 info: data
             }

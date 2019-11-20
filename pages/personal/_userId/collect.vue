@@ -24,7 +24,6 @@
         },
         async asyncData({params,store}) {
             let {data} = await collect.getList({userId:params.userId});
-            console.log(data);
             return {
                 collectList: data,
             }

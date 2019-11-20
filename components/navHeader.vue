@@ -43,7 +43,6 @@
                     this.message.private=res.data.private_message_number;
                     this.message.dynamic = res.data.dynamic_message_number;
                     this.$store.dispatch("user/setMessage",this.message);
-                    console.log(this.message);
                 });
             }
 	    },

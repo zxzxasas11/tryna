@@ -56,7 +56,6 @@
 		    
 		    async send(){
 		        await message.add(this.replyInfo).then(async res=>{
-		            console.log(res);
 		            this.$message.success("回复成功");
                     await message.getChat(this.$route.params.userId).then(res=>{
                         this.chatList=res.data;
