@@ -7,8 +7,8 @@ export default {
                 return jwt_decode(state.user.token)
             }
             else{
-                if(cookies.get("token")){
-                    return jwt_decode(cookies.get("token"))
+                if(localStorage.getItem("token")){
+                    return jwt_decode(localStorage.getItem("token"))
                 }else {
                     return {username:"",userId:""}
                 }
@@ -24,16 +24,16 @@ export default {
                 return (state.user.token)
             }
             else{
-                if(cookies.get("token")){
-                    return (cookies.get("token"))
+                if(localStorage.getItem("token")){
+                    return (localStorage.getItem("token"));
                 }
             }
         }
     },
     getPower:state=>{
         if(process.client){
-            if(cookies.get("token")){
-                return jwt_decode(cookies.get("token")).power;
+            if(localStorage.getItem("token")){
+                return jwt_decode(localStorage.getItem("token")).power;
             }
             else{
                 return "";
@@ -42,8 +42,8 @@ export default {
     },
     getUserName:state=> {
         if(process.client){
-            if(cookies.get("token")){
-                return jwt_decode(cookies.get("token")).username;
+            if(localStorage.getItem("token")){
+                return jwt_decode(localStorage.getItem("token")).username;
             }
             else{
                 return "";
@@ -52,8 +52,8 @@ export default {
     },
     getUserId:state=>{
         if(process.client){
-            if(cookies.get("token")){
-                return jwt_decode(cookies.get("token")).userId;
+            if(localStorage.getItem("token")){
+                return jwt_decode(localStorage.getItem("token")).userId;
             }
             else{
                 return "";

@@ -51,22 +51,16 @@
                 this.$store.dispatch("user/delToken");
                 this.$router.push("/")
             }
-	    },
-	    watch:{
 	    }
     }
 </script>
 
 <style scoped lang="less">
-	head{
+	.head{
 		a{
 			display: inline-block;
 		}
 	}
-	/*a{
-		height: inherit;
-		display: inherit;
-	}*/
 	.nav-line{
 		height:60px;
 		line-height:60px;

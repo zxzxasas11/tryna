@@ -3,7 +3,7 @@ import fetch from './fetch';
 export default {
     // 获取列表 1我关注的人   2 关注我的人
     getAll(params) {
-        return fetch.json(`/care/getAll/${params.type}`,"GET", params);
+        return fetch.json(`/care/getAll`,"GET", params);
     },
     //添加关注
     add(id){

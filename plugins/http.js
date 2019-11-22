@@ -35,6 +35,37 @@ export default ({ app, $axios, store, route, redirect,req }) => {
     }, (error) => {
         return Promise.reject(error)
     });
+
+    axios.interceptors.response.use((res) => {
+        if(process.client){
+            for(let i in backCode){
+                if(res.data.code===i){
+                    //if (document.getElementsByClassName('el-message').length === 0) {
+                    Message.error(backCode[i]);
+                    //}
+                }
+            }
+            return res
+        }
+        },
+        (error) => {
+            if(process.client){
+                switch (error.response.status) {
+                    case 500:
+                        break;
+                    case 400:
+                        break;
+                    case 401:
+                        Message.error("登录信息已过期");
+                        cookies.remove("token");
+                        //redirect("/login");
+                        break;
+                    default:
+                        console.log(`连接错误${error.response.status}`)
+                }
+                return Promise.reject(error)
+            }
+        });
 }
 
 

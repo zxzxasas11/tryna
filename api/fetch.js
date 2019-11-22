@@ -9,7 +9,7 @@ const url = process.env.NODE_ENV === 'development'
     : 'http://192.168.31.226:9357';
 axios.defaults.baseURL = url;
 //axios.defaults.withCredentials=true;
-axios.defaults.timeout = 5000;
+axios.defaults.timeout = 60000;
 /*axios.interceptors.request.use((config) => {
     if(process.client){
         let token =cookies.get("token");

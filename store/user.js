@@ -22,12 +22,14 @@ export const mutations = {
     set_token(state,token){
         state.token = token;
         if(token!==undefined){
-            cookies.set('token',token);
+            //cookies.set('token',token);
+            localStorage.setItem("token",token);
         }
     },
     del_token(state){
         state.token = '';
-        cookies.remove("token");
+        //cookies.remove("token");
+        localStorage.removeItem("token");
     },
     user_login(state,token){
         state.token = token;

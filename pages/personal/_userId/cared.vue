@@ -20,7 +20,7 @@
             }
         },
         async asyncData({params}) {
-            let {data} = await care.getAll({type:"2"});
+            let {data} = await care.getAll({cared_id:params.userId});
             return {
                 careList: data
             }

@@ -11,7 +11,7 @@
 			</ul>
 		</div>
 		<div class="right">
-			<nuxt-child keep-alive></nuxt-child>
+			<nuxt-child keep-alive/>
 		</div>
 	</div>
 </template>
@@ -25,6 +25,7 @@
             }
         },
         async asyncData({params,store}) {
+            if (!process.server) return;
             let {data} = await message.getPrivate({});
             return {
                 userList: data

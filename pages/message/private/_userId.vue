@@ -27,19 +27,6 @@
 	            }
             }
         },
-        async fetch({ store, params }) {
-            /*if(params.userId) {
-                await message.editPrivateMessage(params.userId).then(res => {
-                    console.log("已经将状态修改");
-
-                })
-            }*/
-            /*if(store.getters.getT){
-                const { data } = await collect.check(params.id);
-                store.dispatch('posts/setPost', {collect:data?1:0})
-            }*/
-
-        },
 	    async asyncData({params,route}) {
             if(params.userId){
                 let {data} = await message.getChat(params.userId);

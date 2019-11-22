@@ -1,7 +1,9 @@
 <template>
 	<div class="list-box">
 		<div class="list-single" v-for="p in postList.data">
-			<div class="title"><nuxt-link :to="'/post/'+p._id">{{p.title}}</nuxt-link></div>
+			<div class="title">
+				<nuxt-link :to="'/post/'+p._id">{{p.title}}</nuxt-link>
+			</div>
 			<div>
 				<span>浏览时间:{{p.create_time}}</span>
 				<span>所属分类:{{p.category}}</span>
