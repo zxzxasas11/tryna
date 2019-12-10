@@ -64,5 +64,6 @@ export default {
     activeIndex: state => state.tags.activeIndex,
     getKeepAlive: state => state.tags.keepAlive,
     getPostInfo:state => state.posts.postInfo,
-    getMessage:state =>state.user.message
+    getMessage:state =>state.user.message,
+    getSocket:state =>state.socket.socket
 };

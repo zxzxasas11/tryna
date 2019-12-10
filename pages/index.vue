@@ -21,20 +21,22 @@
     export default {
         data() {
             return {
-                categoryList:[]
+                categoryList:[],
+                
             }
         },
         created() {
             this.getData();
+            
         },
 	    mounted(){
 	    },
         methods: {
-            getData(){
-                category.getCategory({}).then(res=>{
+            getData() {
+                category.getCategory({}).then(res => {
                     this.categoryList = res.data;
                 })
-            }
+            },
         }
     }
 </script>
