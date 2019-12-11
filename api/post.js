@@ -35,11 +35,22 @@ export default {
         return fetch.json("/post/add",'POST',params);
     },
     /**
-     * zhiding
+     * 置顶
      */
     setTopOrEssence(postId,params){
         return fetch.json(`/post/topOrEssence/${postId}`,"PUT",params);
     },
+    /**
+     * 提交投票
+     * @param params
+     * @returns {Promise | Promise<unknown>}
+     */
+    postVote(params){
+        return fetch.json('/post/vote',"POST",params);
+    },
+    getVoteResult(params){
+        return fetch.json("/post/getVoteResult","GET",params);
+    }
 
 
 }

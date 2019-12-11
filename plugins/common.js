@@ -19,6 +19,10 @@ const common = {
     },
     markdownToHtml(markdown){
         return marked(markdown);
+    },
+    ws: {},
+    setWs: function(newWs) {
+        this.ws = newWs
     }
 };
 

@@ -19,6 +19,15 @@
 				<span class="time">{{post.create_time}}</span>
 				<span @click="edit(post)">修改帖子</span>
 				<div v-html="post.content"></div>
+				<div class="vote-box" v-if="post.vote!==undefined">
+					<div>{{post.vote.title}}</div>
+					<div v-for="c in post.vote.content">
+						<span>
+							<el-radio v-model="rk" :label="c._id">{{c.text}}</el-radio>
+						</span>
+					</div>
+					<el-button @click="submitVote">提交</el-button>
+				</div>
 			</div>
 		</div>
 		<div class="line" v-for="p in post.comments">
@@ -46,7 +55,7 @@
 								v-for="r in categoryList.top"
 								:key="r._id"
 								:value="r._id"
-								:label="r.name"></el-option>
+								:label="r.name"/>
 					</el-select>
 				</el-form-item>
 			</el-form>
@@ -113,7 +122,8 @@
                 categoryList: {},
 	            user:{},
 	            replyVisible:false,
-	            ifAdmin:false
+	            ifAdmin:false,
+	            rk:""
             }
         },
 	    filters:{
@@ -137,6 +147,7 @@
         async asyncData({params,store}) {
             let {data} = await post.getOne(params.id);
             let c = await category.getOne({id: data.categoryId});
+            console.log(data);
             store.dispatch('posts/setPost', {top:data.top,essence:data.essence});
             return {
                 post: data,
@@ -216,6 +227,21 @@
                 this.page.currentPage=val;
                 this.getPost(this.$route.params.id,this.page);
                 window.scrollTo(0,0);
+            },
+	        //提交投票
+            submitVote(){
+                //现在只测试单选
+                let data ={
+                    postId:this.$route.params.id,
+	                voteIndex:[this.rk]
+                };
+                post.getVoteResult({postId:this.$route.params.id}).then(res=>{
+                    console.log(res);
+                });
+                return;
+                /*post.postVote(data).then(res=>{
+                    console.log(res);
+                })*/
             }
         }
     }

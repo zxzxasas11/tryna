@@ -29,6 +29,7 @@
                 }else{
                     // 实例化socket
                     this.socket = new WebSocket(this.path);
+                    this.common.setWs(this.socket);
                     // 监听socket连接
                     this.socket.onopen = this.open;
                     // 监听socket错误信息
@@ -44,7 +45,8 @@
                 console.log("连接错误");
             },
             getMessage: function (msg) {
-                this.$store.dispatch("/socket/setSocket",JSON.parse(msg.data));
+                alert(msg.data);
+                //this.$store.dispatch("/socket/setSocket",JSON.parse(msg.data));
             },
             send: function (params) {
                 this.socket.send(params)
@@ -58,7 +60,7 @@
             this.socket.onclose = this.close
         },
 	    watch: {
-            '$store.getters.getSocket': {
+            /*'$store.getters.getSocket': {
                 handler: function(newer, older) {
                     //解释一下为什么这里我放了判断，因为我的需求使然，我存在vuex中的是userID，一个用户只有一个id，但可能会提交多条数据，watch只在数据发生变动的时候才执行操作，所以上面我每次都将store里面的数据置空操作。
                     if (newer == null) {
@@ -69,7 +71,7 @@
                     }
                 },
                 deep: true // 开启深度监听
-            }
+            }*/
         }
     }
 </script>
