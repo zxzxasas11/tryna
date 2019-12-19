@@ -79,7 +79,7 @@
 		tr {
 			height: 40px;
 			line-height: 40px;
-
+			font-size:16px;
 			&:nth-child(odd) {
 				background-color: #ffe34a;
 			}

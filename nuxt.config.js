@@ -39,8 +39,8 @@ module.exports = {
         '@/plugins/element-ui',
         '~/plugins/router',
         {src:'~/plugins/http',ssr:false},
-        { src: '@/plugins/vue-mavon-editor', srr: false },
-        { src: '@/plugins/common', srr: false },
+        { src: '@/plugins/vue-mavon-editor', ssr: false },
+        { src: '@/plugins/common', ssr: false },
         {src:'~/plugins/nuxt-client-init.client.js',ssr:true}
     ],
     /*
@@ -57,12 +57,12 @@ module.exports = {
     },*/
     axios: {
         proxy: true,
-        prefix: '/api/v1', // baseURL
+        prefix: '/api', // baseURL
         credentials: true,
     },
     proxy: {
-        '/api/v1': {
-            target: 'http://192.168.31.226:7777', // 代理地址
+        '/api': {
+            target: 'http://192.168.31.226:7001', // 代理地址
             changeOrigin: true,
             /*pathRewrite: {
               '^/api': ''

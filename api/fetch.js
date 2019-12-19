@@ -4,10 +4,10 @@ import cookies from 'js-cookie'
 import backCode from '../assets/js/code'
 const url = process.env.NODE_ENV === 'development'
     // 测试环境api接口
-    ? 'http://192.168.31.226:9357'
+    ? 'http://192.168.31.226:7001/api'
     // 线上环境api接口
-    : 'http://192.168.31.226:9357';
-axios.defaults.baseURL = url;
+    : 'http://192.168.31.226:7001/api';
+axios.defaults.baseURL = '/api';
 //axios.defaults.withCredentials=true;
 axios.defaults.timeout = 60000;
 /*axios.interceptors.request.use((config) => {

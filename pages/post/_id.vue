@@ -19,14 +19,19 @@
 				<span class="time">{{post.create_time}}</span>
 				<span @click="edit(post)">修改帖子</span>
 				<div v-html="post.content"></div>
-				<div class="vote-box" v-if="post.vote!==undefined">
+				<div class="vote-box" v-if="post.vote!==undefined&&post.voteResult===undefined">
 					<div>{{post.vote.title}}</div>
-					<div v-for="c in post.vote.content">
+					<div v-for="(c,index) in post.vote.content" >
 						<span>
 							<el-radio v-model="rk" :label="c._id">{{c.text}}</el-radio>
 						</span>
 					</div>
 					<el-button @click="submitVote">提交</el-button>
+				</div>
+				<div v-else>
+					<voteRate
+						:voteData="post.voteResult"
+						:voteItem="post.vote.content"/>
 				</div>
 			</div>
 		</div>
@@ -93,6 +98,7 @@
     import post from "../../api/post";
     import category from "../../api/category";
     import collect from "../../api/collect";
+    import voteRate from "../../components/voteRate";
     export default {
         head() {
             return {
@@ -126,6 +132,16 @@
 	            rk:""
             }
         },
+	    components:{voteRate},
+	    computed:{
+            total(){
+                let data =0;
+                for(let i in this.post.voteResult){
+                    data += this.post.voteResult[i].size;
+                }
+                return data;
+            }
+	    },
 	    filters:{
             collectFilter(data){
                 return data===0?'收藏':'取消收藏';
@@ -135,6 +151,13 @@
             },
             essenceFilter(data){
                 return data===0?'加精':'取消加精';
+            },
+            voteName(data,value){
+                for(let i in value){
+                    if(data === value[i]._id){
+                        return value[i].text;
+                    }
+                }
             }
 	    },
         async fetch({ store, params }) {
@@ -142,7 +165,6 @@
                 const { data } = await collect.check(params.id);
                 store.dispatch('posts/setPost', {collect:data?1:0})
             }
-            
         },
         async asyncData({params,store}) {
             let {data} = await post.getOne(params.id);
@@ -235,13 +257,11 @@
                     postId:this.$route.params.id,
 	                voteIndex:[this.rk]
                 };
-                post.getVoteResult({postId:this.$route.params.id}).then(res=>{
-                    console.log(res);
-                });
-                return;
-                /*post.postVote(data).then(res=>{
-                    console.log(res);
-                })*/
+                post.postVote(data).then(res=>{
+                    this.$nextTick(()=>{
+                        this.$set(this.post,"voteResult",res.data)
+                    });
+                })
             }
         }
     }
