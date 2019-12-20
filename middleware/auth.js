@@ -8,7 +8,7 @@ const cookieparser = require('cookieparser');
  * @returns {*}
  */
 export default function ({ store, redirect,req},) {
-    const token = process.client?localStorage.getItem("token"):cookieparser.parse(req.headers.cookie).token;
+    const token = process.client?cookies.get("token"):cookieparser.parse(req.headers.cookie).token;
     if(token){
         return store.dispatch("user/setToken",token);
     }

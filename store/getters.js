@@ -3,17 +3,11 @@ import cookies from 'js-cookie'
 export default {
     getToken:(state)=> {
         if(process.client){
-            if(state.user.token){
-                return jwt_decode(state.user.token)
+            if(cookies.get("token")){
+                return jwt_decode(cookies.get("token"))
+            }else {
+                return {username:"",userId:""}
             }
-            else{
-                if(localStorage.getItem("token")){
-                    return jwt_decode(localStorage.getItem("token"))
-                }else {
-                    return {username:"",userId:""}
-                }
-            }
-
         }else{
             console.log("这次是服务端渲染");
         }
@@ -23,11 +17,15 @@ export default {
             if(state.user.token){
                 return (state.user.token)
             }
-            else{
-                if(localStorage.getItem("token")){
+            else {
+                /*if(localStorage.getItem("token")){
                     return (localStorage.getItem("token"));
+                }*/
+                if (cookies.get("token")) {
+                    return cookies.get("token")
                 }
             }
+
         }
     },
     getPower:state=>{
