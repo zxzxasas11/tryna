@@ -35,7 +35,6 @@
 
 <script>
     import Utils from '~/assets/js/Utils'
-    
     export default {
         name: "Menu",
         data() {
@@ -55,17 +54,22 @@
                             {id:"0202",name:"我的板块",url:"/manage/myPlate"},
                         ]
                     },
+                    {id:'03',name:"比赛管理",url:"",children:[
+                            {id:"0301",name:"比赛项目",url:"/manage/match/project"},
+                            {id:"0302",name:"队伍名单",url:"/manage/match/team"},
+                            {id:"0303",name:"选手名单",url:"/manage/match/player"},
+                            {id:"0304",name:"赛程",url:"/manage/match/raceList"},
+                        ]
+                    },
                 ]
             }
         },
-        created() {
-        },
         methods: {
             handleOpen() {
-            
+
             },
             handleClose() {
-            
+
             },
             addTags(m) {
                 let visit = this.$store.getters.visitedViews;
@@ -94,12 +98,12 @@
         height: 100%;
         min-height:400px;
         text-align: left;
-        
+
         ul {
             height: 100%;
         }
     }
-    
+
     .second_menu_a {
         display: block;
         width: 100%;

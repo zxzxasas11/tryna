@@ -20,7 +20,7 @@
 
         },
         mounted(){
-            this.init();
+            //this.init();
         },
         methods: {
             init: function () {
@@ -57,7 +57,7 @@
         },
         destroyed () {
             // 销毁监听
-            this.socket.onclose = this.close
+            //this.socket.onclose = this.close
         },
 	    watch: {
             /*'$store.getters.getSocket': {

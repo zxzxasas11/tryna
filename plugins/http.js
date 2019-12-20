@@ -28,8 +28,6 @@ export default ({ app, $axios, store, route, redirect,req }) => {
         }
         else{
             console.log("这个走的是服务端");
-            console.log(store);
-            console.log(req.headers.Authorization);
             if(req.headers.cookie){
                 config.headers.common['Authorization'] = 'Bearer ' + cookieparser.parse(req.headers.cookie).token;
             }

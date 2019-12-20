@@ -1,12 +1,13 @@
 <template>
 	<div class="nav-line">
 		<div class="fl head">
-			<nuxt-link to="/">首页</nuxt-link>
+			<nuxt-link to="/">论坛</nuxt-link>
+      <nuxt-link to="/match">比赛</nuxt-link>
 			<nuxt-link to="/manage">后台</nuxt-link>
 		</div>
 		<div class="login-box fr">
 			<ul v-if="$store.getters.getT!==null&&$store.getters.getT!==''&&$store.getters.getT!==undefined">
-				<li><nuxt-link :to="'/personal/'+$store.getters.getToken.userId">个人中心</nuxt-link></li>
+				<li><nuxt-link :to="'/personal/'+$store.getters.getToken.userId+'/mine'">个人中心</nuxt-link></li>
 				<li><nuxt-link to="/message">消息{{$store.getters.getMessage.system+$store.getters.getMessage.private}}</nuxt-link></li>
 				<li><nuxt-link to="/dynamic">动态:{{$store.getters.getMessage.dynamic}}</nuxt-link></li>
 				<li @click="logout">注销</li>

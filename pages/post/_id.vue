@@ -28,7 +28,7 @@
 					</div>
 					<el-button @click="submitVote">提交</el-button>
 				</div>
-				<div v-else>
+				<div v-else-if="post.vote!==undefined&&post.voteResult!==undefined">
 					<voteRate
 						:voteData="post.voteResult"
 						:voteItem="post.vote.content"/>
@@ -169,7 +169,6 @@
         async asyncData({params,store}) {
             let {data} = await post.getOne(params.id);
             let c = await category.getOne({id: data.categoryId});
-            console.log(data);
             store.dispatch('posts/setPost', {top:data.top,essence:data.essence});
             return {
                 post: data,
