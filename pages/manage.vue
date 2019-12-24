@@ -9,7 +9,6 @@
 				<Menu></Menu>
 			</div>
 			<div class="manage">
-				<Tags></Tags>
 				<nuxt-child/>
 			</div>
 		</div>
@@ -18,11 +17,10 @@
 
 <script>
     import Menu from '~/components/Menu'
-    import Tags from '~/components/Tags'
 
     export default {
         layout:"blank",
-        components: {Menu, Tags},
+        components: {Menu},
         methods: {
             logout() {
                 this.$message("注销成功");
@@ -30,16 +28,6 @@
             }
         },
 	    middleware:"admin",
-        mounted() {
-            if (this.$route.path !== '/SysHome') {
-                //this.$store.commit('tags/add_visit', {url: this.$route.path, name: this.$route.name});
-                this.$store.commit('tags/set_active_index', this.$route.path);
-
-            } else {
-                this.$store.commit('tags/set_active_index', '/SysHome');
-                this.$router.push('/SysHome');
-            }
-        },
     }
 </script>
 
@@ -75,7 +63,7 @@
 	}
 	
 	.window {
-		height: calc(100% - @height);
+		height:calc(100% - @height);
 		
 		.nav {
 			width: @nav-width;

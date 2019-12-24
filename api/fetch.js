@@ -7,7 +7,7 @@ const url = process.env.NODE_ENV === 'development'
     ? 'http://192.168.31.226:7001/api'
     // 线上环境api接口
     : 'http://192.168.31.226:7001/api';
-axios.defaults.baseURL = '/api';
+axios.defaults.baseURL = url;
 //axios.defaults.withCredentials=true;
 axios.defaults.timeout = 60000;
 /*axios.interceptors.request.use((config) => {

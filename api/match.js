@@ -13,7 +13,12 @@ export default {
     createTeam(params){
         return fetch.json('/team',"POST",params);
     },
+    //获取选手列表
     getPlayerList(params){
         return fetch.json("/player/getAll","GET",params);
+    },
+    //获取赛程列表
+    getRaceList(params){
+        return fetch.json("/race/getList","GET",params);
     }
 }

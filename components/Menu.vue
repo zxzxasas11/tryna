@@ -72,15 +72,15 @@
 
             },
             addTags(m) {
-                let visit = this.$store.getters.visitedViews;
+                /*let visit = this.$store.getters.visitedViews;
                 this.$store.commit("tags/set_active_index",m.url);
                 for (let i = 0; i < visit.length; i++) {
                     if (m.name === visit[i].name) {
                         return;
                     }
-                }
+                }*/
                 this.$router.push(m.url);
-                this.$store.commit("tags/add_visit",m);
+                //this.$store.commit("tags/add_visit",m);
             }
         },
         mounted() {

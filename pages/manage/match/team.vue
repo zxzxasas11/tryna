@@ -18,7 +18,7 @@
             }
         },
         async asyncData ({params}) {
-            let {data} = await match.getRaceItemList({});
+            let {data} = await match.getTeamList({});
             console.log(data);
             return{
                 race:data
