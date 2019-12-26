@@ -45,7 +45,7 @@
         },
         components: {Table},
 	    middleware:"admin",
-        async asyncData ({ params }) {
+        async asyncData ({ params,store }) {
             let {data} = await post.getList({});
             return{
                 info:data

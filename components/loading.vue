@@ -1,6 +1,6 @@
 <template>
 	<div class="loading-page" v-if="loading">
-		<p>loading...</p>
+		<i class="el-icon-loading" style="font-size: 26px;"/>
 	</div>
 </template>
 
@@ -28,7 +28,7 @@
 		position: absolute;
 		left:0;
 		top:0;
-		background: rgba(0,0,0,.3);
+		background: rgba(255, 202, 41, 0);
 		text-align: center;
 		z-index:99999;
 	}

@@ -22,7 +22,7 @@ export const mutations = {
     set_token(state,token){
         state.token = token;
         if(token!==undefined){
-            cookies.set('token',token);
+            cookies.set('token',token,{ expires: 30 });
         }
     },
     del_token(state){

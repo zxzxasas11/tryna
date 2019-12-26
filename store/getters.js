@@ -60,5 +60,6 @@ export default {
     },
     getPostInfo:state => state.posts.postInfo,
     getMessage:state =>state.user.message,
-    getSocket:state =>state.socket.socket
+    getSocket:state =>state.socket.socket,
+    getLoading:state =>state.loading.loading
 };

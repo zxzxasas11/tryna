@@ -15,7 +15,11 @@
                 <div class="race-box">
                     <div v-for="r in races.data">
                         <span>{{r.score.guest[r.score.guest.length-1]}}</span>
-                        <span>{{r.guest.name}}vs{{r.host.name}}</span>
+                        <span>
+                            <nuxt-link :to="'/match/team/'+r.guest._id">{{r.guest.name}}</nuxt-link>
+                            vs
+                            <nuxt-link :to="'/match/team/'+r.host._id">{{r.host.name}}</nuxt-link>
+                        </span>
                         <span>{{r.score.host[r.score.host.length-1]}}</span>
                     </div>
                 </div>
@@ -36,8 +40,6 @@
             }
         },
         async asyncData({params,route}) {
-            console.log(route.query.team);
-            
             let {data} = await match.getRaceItemList({});
             let aa = await match.getTeamList({itemId:data[0]._id});
             let bb ;
@@ -46,6 +48,7 @@
             }else{
                 bb = await match.getRaceList({itemId:data[0]._id});
             }
+            console.log(bb.data);
             return {
                 item: data,
                 teams:aa.data,
@@ -62,7 +65,8 @@
                     console.log(res);
                     this.races = res.data;
                 })
-            }
+            },
+            
         }
         
     }
