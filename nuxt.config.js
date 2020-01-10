@@ -71,12 +71,12 @@ module.exports = {
     },*/
   axios: {
     proxy: true,
-    prefix: '/zdzxgw', // baseURL
+    prefix: '/api', // baseURL
     //credentials: true,
   },
   proxy: {
-    '/zdzxgw': {
-      target: 'http://115.159.24.111:9039', // 代理地址
+    '/api': {
+      target: 'http://47.114.44.30:7001', // 代理地址
       changeOrigin: true,
       /*pathRewrite: {
         '^/api': ''
