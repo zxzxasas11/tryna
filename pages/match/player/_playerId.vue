@@ -65,7 +65,6 @@
         },
 	    filters:{
             fix(data){
-                console.log(typeof (data));
                 return data;
             }
 	    },
@@ -73,7 +72,6 @@
             let { data } =await match.getPlayerInfo(params.playerId);
             let aa = await match.getPlayerAvgData(params.playerId,{});
             let bb = await match.getPlayerRaceList(params.playerId,{});
-            console.log(bb);
             return {
                 playerInfo:data,
 	            avgData:aa.data[0],

@@ -1,5 +1,6 @@
 <template>
 	<div class="nav-line">
+    <div @click="aa">测试点击</div>
 		<div class="fl head">
 			<nuxt-link to="/">论坛</nuxt-link>
       <nuxt-link to="/match">比赛</nuxt-link>
@@ -51,7 +52,7 @@
             logout(){
                 this.$store.dispatch("user/delToken");
                 this.$router.push("/")
-            }
+            },
 	    }
     }
 </script>

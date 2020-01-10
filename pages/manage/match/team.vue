@@ -19,7 +19,6 @@
         },
         async asyncData ({params}) {
             let {data} = await match.getTeamList({});
-            console.log(data);
             return{
                 race:data
             }

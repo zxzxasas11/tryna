@@ -1,6 +1,7 @@
 
 import axios from 'axios';
 import marked from 'marked'
+const moment = require("moment");
 export  default {
     //list转成父子结构
     listToTree(list,pid,pidName,idName) {
@@ -14,64 +15,8 @@ export  default {
         return ret;//递归结束后返回结果
     },
     //格式化后台传过来的秒数 转化为年月日
-    formatDate:function(str){
-        let oDate = new Date(str),
-            oYear = oDate.getFullYear(),
-            oMonth = oDate.getMonth()+1,
-            oDay = oDate.getDate();
-        return oYear +'-'+ this.addZero(oMonth) +'-'+ this.addZero(oDay) +'';
-    },
-    formDataToHms(str){
-        let oDate = new Date(str),
-            oYear = oDate.getFullYear(),
-            oMonth = oDate.getMonth()+1,
-            oDay = oDate.getDate(),
-            oHour = oDate.getHours(),
-            oMinute = oDate.getMinutes(),
-            oSecond = oDate.getSeconds();
-        return oYear +'-'+ this.addZero(oMonth) +'-'+ this.addZero(oDay) +' ' + this.addZero(oHour)+":"+this.addZero(oMinute)+":"+this.addZero(oSecond);
-    },
-    //格式化秒数为时分秒转化为json对象供highCharts组件
-    dateToHour(value){
-        let secondTime = parseInt(value),minuteTime = 0,hourTime = 0;
-        if(secondTime > 60) {
-            minuteTime = parseInt(secondTime / 60);
-            secondTime = parseInt(secondTime % 60);
-            if(minuteTime > 60) {
-                hourTime = parseInt(minuteTime / 60);
-                minuteTime = parseInt(minuteTime % 60);
-            }
-        }
-        return {hour:hourTime,minute:minuteTime,second:secondTime};
-    },
-    secondToString(value){
-        let secondTime = parseInt(value),minuteTime = 0,hourTime = 0;
-        if(secondTime > 60) {
-            minuteTime = parseInt(secondTime / 60);
-            secondTime = parseInt(secondTime % 60);
-            if(minuteTime > 60) {
-                hourTime = parseInt(minuteTime / 60);
-                minuteTime = parseInt(minuteTime % 60);
-            }
-        }
-        return hourTime+"时"+minuteTime+"分"+secondTime+"秒";
-    },
-    addZero(num){
-        if(parseInt(num) < 10){
-            num = '0'+num;
-        }
-        return num;
-    },
-    fixPicUrl(str){
-        return axios.defaults.baseURL+str;
-    },
-    //清空json
-    clearJson(obj){
-        for(let key in obj){
-            if(typeof (obj[key])!=="object"){
-                obj[key] = "";
-            }
-        }
+    formatDate1(str){
+        return moment(str).format("YYYY-MM-DD")
     },
     //数组转换为string
     arrayToString(arr){
@@ -81,10 +26,6 @@ export  default {
         return str.split(",");
     },
     letter:["A","B","C","D","E","F","G","J","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"],
-    formatDateAndTime(data,reg){
-        let date = new Date(data)
-        return date.getFullYear() + reg + this.addZero(date.getMonth() + 1) + reg + this.addZero(date.getDate() )+ ' ' + this.addZero(date.getHours()) + ':' + this.addZero(date.getMinutes()) + ':' + this.addZero(date.getSeconds());
-    },
     markHtml(res){
         return marked(res);
     }

@@ -71,7 +71,6 @@
             let {data} = await match.getTeamInfo(params.teamId);
             let playerList = await match.getPlayerList({teamId:params.teamId,pageSize:0});
             let raceList = await match.getRaceList({teamId:params.teamId});
-            console.log(raceList);
             return {
                 teamInfo:data,
 	            playerList:playerList.data,

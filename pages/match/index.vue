@@ -7,13 +7,17 @@
         </div>
         <div class="data-box">
             <div class="left">
-                <ul>
-                    <li v-for="t in teams" :class="t._id===$route.query.team?'active-class':''" @click="changeTeam(t)">{{t.name}}</li>
+                <ul class="team-ul">
+                    <li v-for="t in teams">
+                        <nuxt-link :to="{path:'/match',query:{team:t._id}}">{{t.name}}</nuxt-link>
+                    </li>
                 </ul>
             </div>
             <div class="right">
+                <div>{{common.formatTime(new Date(),"YYYY-MM-DD")}}</div>
                 <div class="race-box">
-                    <div v-for="r in races.data">
+                    <div v-for="r in races" class="single">
+                        <span>{{common.formatTime(r.beginTime,"HH:mm")}}</span>
                         <span>{{r.score.guest[r.score.guest.length-1]}}</span>
                         <span>
                             <nuxt-link :to="'/match/team/'+r.guest._id">{{r.guest.name}}</nuxt-link>
@@ -21,10 +25,12 @@
                             <nuxt-link :to="'/match/team/'+r.host._id">{{r.host.name}}</nuxt-link>
                         </span>
                         <span>{{r.score.host[r.score.host.length-1]}}</span>
+                        <span>
+                            <nuxt-link :to="'/match/'+r._id">数据统计</nuxt-link>
+                        </span>
                     </div>
                 </div>
             </div>
-            
         </div>
     </div>
 </template>
@@ -48,7 +54,6 @@
             }else{
                 bb = await match.getRaceList({itemId:data[0]._id});
             }
-            console.log(bb.data);
             return {
                 item: data,
                 teams:aa.data,
@@ -58,15 +63,18 @@
         methods:{
             changeTeam(t){
                 this.$router.push({path:"/match",query:{team:t._id}});
-                this.getRace({teamId:this.$route.query.team});
             },
             getRace(params){
                 match.getRaceList(params).then(res=>{
-                    console.log(res);
                     this.races = res.data;
                 })
             },
             
+        },
+        watch:{
+            '$route.query.team'(data){
+                this.getRace({teamId:data});
+            }
         }
         
     }
@@ -80,5 +88,36 @@
         display: flex;
         .left{width:200px;}
         .right{width:100%;}
+    }
+    .team-ul{
+        li{
+            background-color: #f4f4f4;
+            height:40px;
+            line-height: 40px;
+            cursor: pointer;
+            margin: 1px 0 ;
+            &:hover{
+                color:#0cf;
+            }
+            a{
+                display: inline-block;
+                width:100%;
+                height:100%;
+            }
+        }
+    }
+    
+    .race-box{
+        .single{
+            span:first-child,span:last-child{
+                width:20%;
+            }
+            span:last-child{
+                text-align: right;
+            }
+            span{
+                display: inline-block;
+            }
+        }
     }
 </style>

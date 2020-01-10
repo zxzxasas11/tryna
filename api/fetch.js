@@ -6,7 +6,7 @@ const url = process.env.NODE_ENV === 'development'
     // 测试环境api接口
     ? 'http://192.168.31.226:7001/api'
     // 线上环境api接口
-    : 'http://192.168.31.226:7001/api';
+    : 'http://47.114.44.30:7001/api';
 axios.defaults.baseURL = url;
 //axios.defaults.withCredentials=true;
 axios.defaults.timeout = 60000;
@@ -61,9 +61,9 @@ export default {
                 headers: {'Content-Type': 'application/json;charset=UTF-8'}
             })
                 .then(response => {
-                    if(response.data.code===200){
+                    //if(response.data.code===200){
                         resolve(response.data);
-                    }
+                    //}
                 },err => {
                     reject(err)
                 }).catch(err=>{

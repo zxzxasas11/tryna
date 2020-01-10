@@ -55,20 +55,34 @@ module.exports = {
     /*router: {
         middleware: ['auth'],
     },*/
-    axios: {
+    /*axios: {
         proxy: true,
         prefix: '/api', // baseURL
-        credentials: true,
+        //credentials: true,
     },
     proxy: {
         '/api': {
             target: 'http://192.168.31.226:7001', // 代理地址
             changeOrigin: true,
-            /*pathRewrite: {
+            /!*pathRewrite: {
               '^/api': ''
-            },*/
+            },*!/
         },
+    },*/
+  axios: {
+    proxy: true,
+    prefix: '/zdzxgw', // baseURL
+    //credentials: true,
+  },
+  proxy: {
+    '/zdzxgw': {
+      target: 'http://115.159.24.111:9039', // 代理地址
+      changeOrigin: true,
+      /*pathRewrite: {
+        '^/api': ''
+      },*/
     },
+  },
     render:{
         ssr:true
     },

@@ -34,6 +34,10 @@ export default {
     getRaceList(params){
         return fetch.json("/race/getList","GET",params);
     },
+    //获取单场比赛数据
+    getOneRace(raceId){
+        return fetch.json(`/race/${raceId}`,"GET",{});
+    },
     //根据teamId获取队伍基本信息
     getTeamInfo(teamId){
         return fetch.json(`/team/${teamId}`,"GET",{});

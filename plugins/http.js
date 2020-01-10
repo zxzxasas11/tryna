@@ -16,6 +16,7 @@ export default ({ app, $axios, store, route, redirect,req }) => {
                 config.headers.common['Authorization'] = 'Bearer ' + cookieparser.parse(req.headers.cookie).token;
             }
         }
+        //config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
         return config
     }, (error) => {
         return Promise.reject(error)
