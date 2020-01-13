@@ -1,0 +1,19 @@
+{
+    "time":"出场时间",
+    "shotHit":"投篮命中",
+    "totalShot":"投篮出手",
+    "threeHit":"三分命中",
+    "threeShot":"三分出手",
+    "penaltyShot":"罚球命中",
+    "totalPenalty":"罚球出手",
+    "offensive_rebound":"前场板",
+    "defensive_rebound":"后场板",
+    "rebound":"篮板",
+    "assistance":"助攻",
+    "foul":"犯规",
+    "steal":"抢断",
+    "fault":"失误",
+    "block":"封盖",
+    "score":"得分",
+    "positive_negative_point":"正负值"
+}
